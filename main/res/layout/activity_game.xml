@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_image_lightblue"
+    tools:context=".GameActivity">
+
+    <Button
+        android:id="@+id/whiteRestartGameButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="272dp"
+        android:backgroundTint="@color/purple_2"
+        android:gravity="center"
+        android:text="@string/restart_game_button"
+        app:layout_constraintBottom_toTopOf="@+id/whiteScrollViewSectionBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/whiteNameBar"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <Button
+        android:id="@+id/whiteResignButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/purple_button"
+        android:gravity="center"
+        android:text="@string/resignFromGame"
+        app:layout_constraintBottom_toTopOf="@+id/whiteScrollViewSectionBar"
+        app:layout_constraintEnd_toStartOf="@+id/whiteOfferDraw"
+        app:layout_constraintHorizontal_bias="0.372"
+        app:layout_constraintStart_toEndOf="@+id/whiteRestartGameButton"
+        app:layout_constraintTop_toBottomOf="@+id/whiteNameBar"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <Button
+        android:id="@+id/whiteOfferDraw"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:gravity="center"
+        android:text="@string/offer_draw"
+        app:layout_constraintBottom_toTopOf="@+id/whiteScrollViewSectionBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/whiteNameBar"
+        app:layout_constraintVertical_bias="1.0" />
+
+
+    <Button
+        android:id="@+id/blackOfferDraw"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="272dp"
+        android:backgroundTint="@color/purple_2"
+        android:gravity="center"
+        android:rotation="180"
+        android:text="@string/offer_draw"
+        app:layout_constraintBottom_toTopOf="@+id/blackNameBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/blackScrollViewSectionBar"
+        app:layout_constraintVertical_bias="0.105" />
+
+    <Button
+        android:id="@+id/blackResignButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/purple_button"
+        android:gravity="center"
+        android:rotation="180"
+        android:text="@string/resignFromGame"
+        app:layout_constraintBottom_toTopOf="@+id/blackNameBar"
+        app:layout_constraintEnd_toStartOf="@+id/blackRestartGameButton"
+        app:layout_constraintHorizontal_bias="0.538"
+        app:layout_constraintStart_toEndOf="@+id/blackOfferDraw"
+        app:layout_constraintTop_toBottomOf="@+id/blackScrollViewSectionBar"
+        app:layout_constraintVertical_bias="0.105" />
+
+
+    <Button
+        android:id="@+id/blackRestartGameButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:gravity="center"
+        android:rotation="180"
+        android:text="@string/restart_game_button"
+        app:layout_constraintBottom_toTopOf="@+id/blackNameBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/blackScrollViewSectionBar"
+        app:layout_constraintVertical_bias="0.105" />
+
+
+    <FrameLayout
+        android:id="@+id/blackSectionBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginEnd="16dp"
+        android:rotation="180"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <LinearLayout
+            android:id="@+id/blackCapturedPiecesLayout"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginEnd="0dp"
+            android:layoutDirection="rtl"
+            android:orientation="horizontal"
+            android:rotation="180"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="parent">
+
+        </LinearLayout>
+    </FrameLayout>
+
+
+    <!-- A Sakktábla -->
+    <FrameLayout
+        android:id="@+id/chessBoard"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/bluecolorchessboard"
+        android:columnCount="8"
+        android:rowCount="8"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.5">
+
+    </FrameLayout>
+
+
+    <FrameLayout
+        android:id="@+id/whiteSectionBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <LinearLayout
+            android:id="@+id/whiteCapturedPiecesLayout"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginEnd="0dp"
+            android:layoutDirection="ltr"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+        </LinearLayout>
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/whiteScrollViewSectionBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/whiteSectionBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <HorizontalScrollView
+            android:id="@+id/whiteMovesScrollView"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_gravity="center">
+
+            <TextView
+                android:id="@+id/whitePlayerMovesText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textColor="@android:color/black"
+                android:textSize="16sp"
+                android:textStyle="bold"/>
+        </HorizontalScrollView>
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/blackScrollViewSectionBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/blackSectionBar">
+
+        <HorizontalScrollView
+            android:id="@+id/blackMovesScrollView"
+            android:layout_width="match_parent"
+            android:layout_height="34dp"
+            android:layout_gravity="center">
+
+            <TextView
+                android:id="@+id/blackPlayerMovesText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:rotation="180"
+                android:textColor="@android:color/black"
+                android:textSize="16sp"
+                android:textStyle="bold"/>
+        </HorizontalScrollView>
+    </FrameLayout>
+
+    <RelativeLayout
+        android:id="@+id/whiteNameBar"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/chessBoard">
+
+
+        <TextView
+            android:id="@+id/whitePlayerNameTextView4White"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentStart="true"
+            android:layout_gravity="center"
+            android:text="@string/white_player"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/whiteTimeTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
+            android:layout_gravity="center"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/whitePlayerTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/blackNameBar"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/chessBoard"
+        android:rotation="180">
+
+
+        <TextView
+            android:id="@+id/blackPlayerNameTextView4Black"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentStart="true"
+            android:layout_gravity="center"
+            android:text="@string/black_player"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/blackTimeTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
+            android:layout_gravity="center"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/blackPlayerTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_centerHorizontal="true" />
+
+    </RelativeLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
