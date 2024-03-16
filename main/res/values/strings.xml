@@ -18,11 +18,13 @@
     <string name="about_dev_button">A fejlesztőkről</string>
     <string name="azft2ichessimage_description">Játék ikon</string>
     <string name="chess_game_rules_text">Játékszabályok</string>
-    <string name="resignFromGame">Feladás</string>
+    <string name="whiteResignFromGame">Feladás</string>
+    <string name="blackResignFromGame">Feladás</string>
     <string name="white_player">Fehér:</string>
     <string name="black_player">Fekete:</string>
     <string name="restart_game_button">Újrakezdés</string>
-    <string name="offer_draw">Döntetlen</string>
+    <string name="offer_draw_white">Döntetlen</string>
+    <string name="offer_draw_black">Döntetlen</string>
     <string name="rematch_button">Visszavágó</string>
     <string name="start_new_game_button">Új játék</string>
     <string name="draw_offer_text">Döntetlen ajánlat</string>
