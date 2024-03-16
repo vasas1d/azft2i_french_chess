@@ -5,13 +5,18 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
+
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.ImageView;
+
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import com.google.android.material.snackbar.Snackbar;
 import ekke.azft2i.azft2i_chess_twoplayer_20.board.ChessBoard;
+import ekke.azft2i.azft2i_chess_twoplayer_20.helper.SnackbarHelper;
 
 
 public class GameActivity extends AppCompatActivity {
@@ -77,8 +82,21 @@ public class GameActivity extends AppCompatActivity {
 
         Button whiteResignButton = findViewById(R.id.whiteResignButton);
         whiteResignButton.setOnClickListener(view -> {
-            Intent intent = new Intent(this, GameMainActivity.class);
-            startActivity(intent);
+            new AlertDialog.Builder(this)
+                    .setTitle("Játszma feladása")
+                    .setMessage("Biztosan szeretnéd feladni a játékot?")
+                    .setPositiveButton("Igen", (dialog, which) -> {
+                        Intent intent = new Intent(this, GameMainActivity.class);
+                        startActivity(intent);
+                    })
+                    .setNegativeButton("Nem", (dialog, which) -> {
+                        // ha nem, akkor semmi se történjen
+                        Snackbar.make(view, "A játék folytatódik!", Snackbar.LENGTH_SHORT).show();
+                    })
+                    .show();
+
+//            Intent intent = new Intent(this, GameMainActivity.class);
+//            startActivity(intent);
         });
         Button blackResignButton = findViewById(R.id.blackResignButton);
         blackResignButton.setOnClickListener(view -> {
@@ -86,19 +104,27 @@ public class GameActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
+
+        // átírni, túlontúl spagetti, feketét is
         whiteOfferDrawButton.setOnClickListener(view -> {
             String user = chessBoard.getTurn().isWhiteMove() ? getString(R.string.white_next_turn) : getString(R.string.black_next_turn);
 
-            if (isBlackDrawOffer) {
+            if (!chessBoard.getTurn().isWhiteMove()){
+                Log.d("GameActivity","- whiteOfferDrawButton - Csak saját körben");
+                Snackbar.make(view, "Csak saját körben", Snackbar.LENGTH_SHORT).show();
+
+            }
+            else if ( isBlackDrawOffer && !isWhiteDrawOffer) {
                 Log.d("GameActivity","- whiteOfferDrawButton - Fehér elfogadta a döntetlent");
                 String drawOffered = getString(R.string.draw_offered_text);
                 whitePlayerTextView.setText(drawOffered);
                 blackPlayerTextView.setText(drawOffered);
-
                 startActivity(new Intent(this, GameTiedActivity.class));
             }
-            else if (!isWhiteDrawOffer){
-                Log.d("GameActivity","- whiteOfferDrawButton - Fehér döntetlen ajánlat");
+            else if (!isWhiteDrawOffer ){
+                Log.d("GameActivity","- whiteOfferDrawButton - Fehér döntetlen ajánlat elküldve");
+                SnackbarHelper.showTopSnackbar(this, view, "Fehér játékos döntetlen ajánlatot tett");
+
                 isWhiteDrawOffer = !isWhiteDrawOffer;
                 whitePlayerTextView.setText(R.string.draw_offer_text);
                 whiteOfferDrawButton.setTextColor(Color.RED);
@@ -106,6 +132,7 @@ public class GameActivity extends AppCompatActivity {
             }
             else {
                 Log.d("GameActivity","- whiteOfferDrawButton - Fehér döntetlen ajánlat visszavonva");
+                Snackbar.make(view, "Döntetlen ajánlat visszavonva.", Snackbar.LENGTH_SHORT).show();
                 isWhiteDrawOffer = !isWhiteDrawOffer;
                 whitePlayerTextView.setText(user);
                 whiteOfferDrawButton.setTextColor(Color.WHITE);
@@ -119,16 +146,20 @@ public class GameActivity extends AppCompatActivity {
         blackOfferDrawButton.setOnClickListener(view -> {
             String user = chessBoard.getTurn().isWhiteMove() ? getString(R.string.white_next_turn) : getString(R.string.black_next_turn);
 
-            if (isWhiteDrawOffer) {
+            if (chessBoard.getTurn().isWhiteMove()){
+                Log.d("GameActivity","- blackOfferDrawButton - Csak saját körben");
+                SnackbarHelper.showTopSnackbar(this, view, "Csak saját körben");
+            }
+            else  if (isWhiteDrawOffer && !isBlackDrawOffer) {
                 Log.d("GameActivity","- blackOfferDrawButton - Fekete elfogadta a döntetlent");
                 String drawOffered = getString(R.string.draw_offered_text);
                 whitePlayerTextView.setText(drawOffered);
                 blackPlayerTextView.setText(drawOffered);
-
                 startActivity(new Intent(this, GameTiedActivity.class));
             }
             else if (!isBlackDrawOffer){
-                Log.d("GameActivity","- blackOfferDrawButton - Fekete döntetlen ajánlat");
+                Log.d("GameActivity","- blackOfferDrawButton - Fekete döntetlen ajánlat elküldve");
+                Snackbar.make(view, "Fekete játékos döntetlen ajánlatot tett", Snackbar.LENGTH_SHORT).show();
                 isBlackDrawOffer = !isBlackDrawOffer;
                 blackPlayerTextView.setText(R.string.draw_offer_text);
                 whiteOfferDrawButton.setTextColor(Color.RED);
@@ -136,6 +167,7 @@ public class GameActivity extends AppCompatActivity {
             }
             else {
                 Log.d("GameActivity","- blackOfferDrawButton - Fekete döntetlen ajánlat visszavonva");
+                SnackbarHelper.showTopSnackbar(this, view, "Döntetlen ajánlat visszavonva");
                 isBlackDrawOffer = !isBlackDrawOffer;
                 blackPlayerTextView.setText(user);
                 whiteOfferDrawButton.setTextColor(Color.WHITE);
