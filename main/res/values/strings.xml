@@ -1,8 +1,11 @@
 <resources>
     <string name="app_name">AZFT2I Francia Sakk</string>
     <string name="hello_user_msg">A folytatáshoz érintse meg a képernyőt!</string>
-    <string name="white_player_name_spec">Add meg a fehér játékos nevét</string>
-    <string name="black_player_name_spec">Add meg a fekete játékos nevét</string>
+    <string name="white_player_name_spec">Add meg a fehér játékost</string>
+    <string name="black_player_name_spec">Add meg a fekete játékost</string>
+    <string name="no_text"> </string>
+    <string name="invisible_name_request1"> Add meg a fehér játékost </string>
+    <string name="invisible_name_request2"> Add meg a fehér játékost </string>
     <string name="white_player_name_request">Fehér játékos</string>
     <string name="black_player_name_request">Fekete játékos</string>
     <string name="white_player_name">Fehér játékos:</string>
