@@ -9,8 +9,15 @@ import android.widget.TextView;
 import com.google.android.material.snackbar.Snackbar;
 
 public class SnackbarHelper {
-
-    public static void showTopSnackbar(Context context, View view, String message) {
+    /**
+     * Megjeleníti a paraméterben kapott szöveget egy Snackbar emelben a
+     * nézet tetején 180 fokban elforgatva. a fekete játékosnak szánt felugró
+     * értesítésének kijelzésére szlgál
+     *
+     * @param view A nézet, amelyhez a Snackbar kapcsolódik.
+     * @param message A Snackbar-on megjelenő üzenet.
+     */
+    public static void showTopSnackBar(View view, String message) {
         Snackbar snackbar = Snackbar.make(view, message, Snackbar.LENGTH_SHORT);
         View snackbarView = snackbar.getView();
         TextView textView = snackbarView.findViewById(com.google.android.material.R.id.snackbar_text);
@@ -24,4 +31,5 @@ public class SnackbarHelper {
 
         snackbar.show();
     }
+
 }
