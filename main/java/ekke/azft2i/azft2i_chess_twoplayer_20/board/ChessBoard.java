@@ -12,9 +12,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.core.content.ContextCompat;
-
-
-import ekke.azft2i.azft2i_chess_twoplayer_20.GameTiedActivity;
 import ekke.azft2i.azft2i_chess_twoplayer_20.GameTurn;
 import ekke.azft2i.azft2i_chess_twoplayer_20.R;
 import ekke.azft2i.azft2i_chess_twoplayer_20.pieces.*;

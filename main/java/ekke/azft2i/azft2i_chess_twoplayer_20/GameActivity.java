@@ -5,24 +5,15 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
-
-import android.view.Gravity;
-import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.ImageView;
-import android.widget.Toast;
-
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.snackbar.Snackbar;
 import ekke.azft2i.azft2i_chess_twoplayer_20.board.ChessBoard;
 import ekke.azft2i.azft2i_chess_twoplayer_20.helper.SnackbarHelper;
-
 
 public class GameActivity extends AppCompatActivity {
 
@@ -38,6 +29,16 @@ public class GameActivity extends AppCompatActivity {
 
     private TextView whiteClock;
     private TextView blackClock;
+
+    Player playerWhite;
+    Player playerBlack;
+
+    public Player getPlayerWhite() {
+        return playerWhite;
+    }
+    public Player getPlayerBlack() {
+        return playerBlack;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -141,7 +142,17 @@ public class GameActivity extends AppCompatActivity {
                 String drawOffered = getString(R.string.draw_offered_text);
                 whitePlayerTextView.setText(drawOffered);
                 blackPlayerTextView.setText(drawOffered);
-                startActivity(new Intent(this, GameTiedActivity.class));
+
+                // intentben átadjuk a következő nézetnek a meccs adatait
+                Intent intent = new Intent(this, GameTiedActivity.class);
+                playerWhite.increaseScore(1);
+                playerBlack.increaseScore(1);
+                intent.putExtra("WHITE_NICKNAME", playerWhite.getName());
+                intent.putExtra("WHITE_NICK_SCORE", playerWhite.getScore());
+                intent.putExtra("BLACK_NICKNAME", playerBlack.getName());
+                intent.putExtra("BLACK_NICK_SCORE", playerBlack.getScore());
+                intent.putExtra("GAME_SCORE","DÖNTETLEN");
+                startActivity(intent);
             }
             else if (!isWhiteDrawOffer ){
                 Log.d("GameActivity","- whiteOfferDrawButton - Fehér döntetlen ajánlat elküldve");
@@ -177,7 +188,17 @@ public class GameActivity extends AppCompatActivity {
                 String drawOffered = getString(R.string.draw_offered_text);
                 whitePlayerTextView.setText(drawOffered);
                 blackPlayerTextView.setText(drawOffered);
-                startActivity(new Intent(this, GameTiedActivity.class));
+
+                // intentben átadjuk a következő nézetnek a meccs adatait
+                Intent intent = new Intent(this, GameTiedActivity.class);
+                playerWhite.increaseScore(1);
+                playerBlack.increaseScore(1);
+                intent.putExtra("WHITE_NICKNAME", playerWhite.getName());
+                intent.putExtra("WHITE_NICK_SCORE", playerWhite.getScore());
+                intent.putExtra("BLACK_NICKNAME", playerBlack.getName());
+                intent.putExtra("BLACK_NICK_SCORE", playerBlack.getScore());
+                intent.putExtra("GAME_SCORE","DÖNTETLEN");
+                startActivity(intent);
             }
             else if (!isBlackDrawOffer){
                 Log.d("GameActivity","- blackOfferDrawButton - Fekete döntetlen ajánlat elküldve");
@@ -204,8 +225,11 @@ public class GameActivity extends AppCompatActivity {
         // figurák kirajzolása a sakktáblára
         FrameLayout chessBoardContainer = findViewById(R.id.chessBoard);
         chessBoard.drawPieces(chessBoardContainer);
-
         initializeCapturedPiecesLayouts(); // leütött figurák helyének megjelenítése
+
+        // játékosok felparaméterezése intentből a névvel és a színnel
+        playerWhite = new Player(whitePlayerName, ekke.azft2i.azft2i_chess_twoplayer_20.pieces.Color.WHITE);
+        playerBlack = new Player(blackPlayerName, ekke.azft2i.azft2i_chess_twoplayer_20.pieces.Color.BLACK);
     }
 
 

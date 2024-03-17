@@ -1,12 +1,20 @@
 package ekke.azft2i.azft2i_chess_twoplayer_20;
 
+import ekke.azft2i.azft2i_chess_twoplayer_20.pieces.Color;
+
 public class Player {
 
     private String playerNick;
     private int playerScore;
+    private Color playerColor;
 
-    public Player(String name) {
+
+
+
+
+    public Player(String name, Color color) {
         this.playerNick = name;
+        this.playerColor = color;
         this.playerScore = 0;
     }
     public String getName() {
@@ -29,11 +37,15 @@ public class Player {
         this.playerScore += points;
     }
 
+    public Color getPlayerColor() {
+        return playerColor;
+    }
+
     @Override
     public String toString() {
-        return "Player{" +
-                "name='" + playerNick + '\'' +
-                ", score=" + playerScore +
+        return "Játékos{" +
+                "név='" + playerNick + '\'' +
+                ", pontszám=" + playerScore +
                 '}';
     }
 }

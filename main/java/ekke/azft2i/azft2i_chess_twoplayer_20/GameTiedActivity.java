@@ -26,11 +26,11 @@ public class GameTiedActivity extends AppCompatActivity {
         Button newGameButton = findViewById(R.id.newGameButton);
 
         TextView chessMovedTextView = findViewById(R.id.chessOpeningsTextView);
-        chessMovedTextView.setText(ChessBoard.getAllMoves()); // lépések printelése
+        chessMovedTextView.setText(ChessBoard.getAllMoves()); // lépések printelése static metódussal
 
         wClockAfterMatch = findViewById(R.id.playerClockWhite);
         bClockAfterMatch = findViewById(R.id.playerClockBlack);
-        initAllPlayerEndClock(GameTurn.getWhiteRemTime(), GameTurn.getBlackRemTime()); // órák printelése
+        initAllPlayerEndClock(GameTurn.getWhiteRemTime(), GameTurn.getBlackRemTime()); // órák printelése static metódussal
 
         // nevek és színek intentből
         String whitePlayerName = getIntent().getStringExtra("WHITE_PLAYER_NAME");
