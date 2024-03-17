@@ -23,7 +23,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/backgroundLogoPlaceholder" />
 
-    <!-- Fehér játékos CardView -->
     <androidx.cardview.widget.CardView
         android:id="@+id/whitePlayerCardView"
         android:layout_width="0dp"
@@ -50,7 +49,6 @@
 
     </androidx.cardview.widget.CardView>
 
-    <!-- Fehér játékos EditText -->
     <androidx.cardview.widget.CardView
         android:id="@+id/whitePlayerEditTextCardView"
         android:layout_width="0dp"
@@ -81,7 +79,6 @@
 
     </androidx.cardview.widget.CardView>
 
-    <!-- Fekete játékos CardView -->
     <androidx.cardview.widget.CardView
         android:id="@+id/blackPlayerCardView"
         android:layout_width="0dp"
@@ -108,7 +105,6 @@
 
     </androidx.cardview.widget.CardView>
 
-    <!-- Fekete játékos EditText -->
     <androidx.cardview.widget.CardView
         android:id="@+id/blackPlayerEditTextCardView"
         android:layout_width="0dp"
@@ -139,7 +135,6 @@
 
     </androidx.cardview.widget.CardView>
 
-    <!-- Start gomb -->
     <com.google.android.material.button.MaterialButton
         android:id="@+id/startGameButton"
         android:layout_width="0dp"
@@ -154,7 +149,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <!-- Vissza gomb -->
     <com.google.android.material.button.MaterialButton
         android:id="@+id/backButtonGameStart"
         android:layout_width="0dp"
