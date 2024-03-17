@@ -10,6 +10,8 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.ImageView;
+
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.snackbar.Snackbar;
 import ekke.azft2i.azft2i_chess_twoplayer_20.board.ChessBoard;
@@ -88,22 +90,33 @@ public class GameActivity extends AppCompatActivity {
 
         Button whiteResignButton = findViewById(R.id.whiteResignButton);
         whiteResignButton.setOnClickListener(view -> {
-//            new AlertDialog.Builder(this)
-//                    .setTitle("Játszma feladása")
-//                    .setMessage("Biztosan szeretnéd feladni a játékot?")
-//                    .setPositiveButton("Igen", (dialog, which) -> {
+            new AlertDialog.Builder(this)
+                    .setTitle("Játszma feladása")
+                    .setMessage("Biztosan szeretnéd feladni a játékot?")
+                    .setPositiveButton("Igen", (dialog, which) -> {
+
+                        Intent intent = new Intent(this, GameTiedActivity.class);
+                        playerWhite.increaseScore(0);
+                        playerBlack.increaseScore(1);
+                        intent.putExtra("WHITE_PLAYER_NAME", String.valueOf(playerWhite.getName()));
+                        intent.putExtra("WHITE_NICK_SCORE", String.valueOf(playerWhite.getScore()));
+                        intent.putExtra("BLACK_PLAYER_NAME", String.valueOf(playerBlack.getName()));
+                        intent.putExtra("BLACK_NICK_SCORE", String.valueOf(playerBlack.getScore()));
+                        intent.putExtra("GAME_SCORE","FEHÉR FELADTA");
+                        Log.d("GameActivity","- whiteResignButton onclick - fehér feladás");
+                        startActivity(intent);
+
+                    })
+                    .setNegativeButton("Nem", (dialog, which) -> {
+                        // ha nem, akkor logolás + üzenet
+                        Snackbar.make(view, "A játék folytatódik!", Snackbar.LENGTH_SHORT).show();
+                        SnackbarHelper.showTopSnackBar( view, "A játék folytatódik!");
+                    })
+                    .show();
+
+//            // mi történjen ha resign ?
 //                        Intent intent = new Intent(this, GameMainActivity.class);
 //                        startActivity(intent);
-//                    })
-//                    .setNegativeButton("Nem", (dialog, which) -> {
-//                        // ha nem, akkor semmi se történjen
-//                        Snackbar.make(view, "A játék folytatódik!", Snackbar.LENGTH_SHORT).show();
-//                        SnackbarHelper.showTopSnackBar( view, "A játék folytatódik!");
-//                    })
-//                    .show();
-
-                        Intent intent = new Intent(this, GameMainActivity.class);
-                        startActivity(intent);
         });
         Button blackResignButton = findViewById(R.id.blackResignButton);
         blackResignButton.setOnClickListener(view -> {
@@ -120,7 +133,15 @@ public class GameActivity extends AppCompatActivity {
 //                    })
 //                    .show();
 
-            Intent intent = new Intent(this, GameMainActivity.class);
+            Intent intent = new Intent(this, GameTiedActivity.class);
+            playerWhite.increaseScore(0);
+            playerBlack.increaseScore(1);
+            intent.putExtra("WHITE_PLAYER_NAME", String.valueOf(playerWhite.getName()));
+            intent.putExtra("WHITE_NICK_SCORE", String.valueOf(playerWhite.getScore()));
+            intent.putExtra("BLACK_PLAYER_NAME", String.valueOf(playerBlack.getName()));
+            intent.putExtra("BLACK_NICK_SCORE", String.valueOf(playerBlack.getScore()));
+            intent.putExtra("GAME_SCORE","FEKETE FELADTA");
+            Log.d("GameActivity","- whiteResignButton onclick - fekete feladás");
             startActivity(intent);
 
 
@@ -145,12 +166,12 @@ public class GameActivity extends AppCompatActivity {
 
                 // intentben átadjuk a következő nézetnek a meccs adatait
                 Intent intent = new Intent(this, GameTiedActivity.class);
-                playerWhite.increaseScore(1);
-                playerBlack.increaseScore(1);
-                intent.putExtra("WHITE_NICKNAME", playerWhite.getName());
-                intent.putExtra("WHITE_NICK_SCORE", playerWhite.getScore());
-                intent.putExtra("BLACK_NICKNAME", playerBlack.getName());
-                intent.putExtra("BLACK_NICK_SCORE", playerBlack.getScore());
+                playerWhite.increaseScore(0);
+                playerBlack.increaseScore(0);
+                intent.putExtra("WHITE_PLAYER_NAME", String.valueOf(playerWhite.getName()));
+                intent.putExtra("WHITE_NICK_SCORE", String.valueOf(playerWhite.getScore()));
+                intent.putExtra("BLACK_PLAYER_NAME", String.valueOf(playerBlack.getName()));
+                intent.putExtra("BLACK_NICK_SCORE", String.valueOf(playerBlack.getScore()));
                 intent.putExtra("GAME_SCORE","DÖNTETLEN");
                 startActivity(intent);
             }
@@ -191,12 +212,12 @@ public class GameActivity extends AppCompatActivity {
 
                 // intentben átadjuk a következő nézetnek a meccs adatait
                 Intent intent = new Intent(this, GameTiedActivity.class);
-                playerWhite.increaseScore(1);
-                playerBlack.increaseScore(1);
-                intent.putExtra("WHITE_NICKNAME", playerWhite.getName());
-                intent.putExtra("WHITE_NICK_SCORE", playerWhite.getScore());
-                intent.putExtra("BLACK_NICKNAME", playerBlack.getName());
-                intent.putExtra("BLACK_NICK_SCORE", playerBlack.getScore());
+                playerWhite.increaseScore(0);
+                playerBlack.increaseScore(0);
+                intent.putExtra("WHITE_PLAYER_NAME", String.valueOf(playerWhite.getName()));
+                intent.putExtra("WHITE_NICK_SCORE", String.valueOf(playerWhite.getScore()));
+                intent.putExtra("BLACK_PLAYER_NAME", String.valueOf(playerBlack.getName()));
+                intent.putExtra("BLACK_NICK_SCORE", String.valueOf(playerBlack.getScore()));
                 intent.putExtra("GAME_SCORE","DÖNTETLEN");
                 startActivity(intent);
             }

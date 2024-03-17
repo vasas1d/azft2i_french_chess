@@ -49,7 +49,7 @@ public class GameStartActivity extends AppCompatActivity {
 
         // Ellenőrizzük, hogy a játékosok megadták-e a nevüket
         if (whitePlayerName.isEmpty() || blackPlayerName.isEmpty()) {
-            // Ha valamelyik név üres, hibaüzenetet jelenítünk meg
+            // ha valamelyik név üres, hibaüzenetet jelenítünk meg
             Toast.makeText(this, "Kérlek add meg mindkét játékos nevét", Toast.LENGTH_SHORT).show();
         } else {
             // Átnavigálás a GameActivity-re és átadása a játékos neveknek

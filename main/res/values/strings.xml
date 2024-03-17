@@ -33,7 +33,8 @@
     <string name="black_next_turn">Fekete következik</string>
     <string name="welcomePage">Üdvözüljük az alkalmazásban!</string>
     <string name="gameStartMessage">Indítás előtt adja meg a két játékos nevét.</string>
-
+    <string name="inGameTimeText_A_Tied">Játékban eltöltött idő</string>
+    <string name="inGameMoveText_A_Tied">Játékban megtett lépések</string>
 
     <string name="chess_rules_text">Játékszabályok:\n\n
     0. A francia sakkban a (hagyományos) sakk minden szabálya érvényes (kezdőállás, lépés- és ütésmódok), az alábbiakkal kiegészítve/módosítva a szabályokat:\n
