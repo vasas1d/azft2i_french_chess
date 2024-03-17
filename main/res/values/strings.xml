@@ -32,7 +32,7 @@
     <string name="white_next_turn">Fehér következik</string>
     <string name="black_next_turn">Fekete következik</string>
     <string name="welcomePage">Üdvözüljük az alkalmazásban!</string>
-    <string name="gameStartMessage">Kérjük az indítás előtt adja meg a két játékos nevét.</string>
+    <string name="gameStartMessage">Indítás előtt adja meg a két játékos nevét.</string>
 
 
     <string name="chess_rules_text">Játékszabályok:\n\n
