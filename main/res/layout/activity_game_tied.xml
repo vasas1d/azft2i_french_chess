@@ -5,6 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+
+
     <View
         android:id="@+id/backgroundLogoPlaceholder"
         android:layout_width="match_parent"
@@ -60,17 +62,18 @@
         android:id="@+id/chessOpeningsScrollView"
         android:layout_width="match_parent"
         android:layout_height="100dp"
+        android:layout_marginBottom="16dp"
         android:padding="16dp"
         app:layout_constraintBottom_toTopOf="@+id/rematchButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginBottom="16dp">
+        app:layout_constraintStart_toStartOf="parent">
 
         <TextView
             android:id="@+id/chessOpeningsTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:text=""
             android:textColor="@color/black"
             android:textSize="16sp" />
@@ -78,6 +81,7 @@
     </ScrollView>
 
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -153,6 +157,18 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+        <TextView
+            android:id="@+id/gameMoveText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="A játékban megtett lépések:"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="396dp" />
+
     </LinearLayout>
 
     <com.google.android.material.button.MaterialButton
@@ -165,8 +181,8 @@
         android:layout_marginBottom="16dp"
         android:backgroundTint="@color/purple_button"
         android:text="@string/rematch_button"
-        app:layout_constraintBottom_toTopOf="@+id/newGameButton"
         android:textColor="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/newGameButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -198,6 +214,6 @@
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
