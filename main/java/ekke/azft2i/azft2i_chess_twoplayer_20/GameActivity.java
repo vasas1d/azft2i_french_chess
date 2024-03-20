@@ -1,15 +1,20 @@
 package ekke.azft2i.azft2i_chess_twoplayer_20;
 
 import android.annotation.SuppressLint;
+
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
+
 import android.widget.Button;
 import android.widget.FrameLayout;
+
 import android.widget.LinearLayout;
+
 import android.widget.TextView;
 import android.widget.ImageView;
+
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,8 +30,7 @@ public class GameActivity extends AppCompatActivity {
     private boolean isWhiteMoveGameActivity;
     boolean isWhiteDrawOffer = false;
     boolean isBlackDrawOffer = false;
-
-    public LinearLayout whiteCapturedPiecesLayout;
+     public LinearLayout whiteCapturedPiecesLayout;
     public LinearLayout blackCapturedPiecesLayout;
 
     private TextView whiteClock;
@@ -133,6 +137,7 @@ public class GameActivity extends AppCompatActivity {
 //                    })
 //                    .show();
 
+
             Intent intent = new Intent(this, GameTiedActivity.class);
             playerWhite.increaseScore(0);
             playerBlack.increaseScore(1);
@@ -143,8 +148,6 @@ public class GameActivity extends AppCompatActivity {
             intent.putExtra("GAME_SCORE","FEKETE FELADTA");
             Log.d("GameActivity","- whiteResignButton onclick - fekete feladás");
             startActivity(intent);
-
-
         });
 
 
@@ -314,4 +317,6 @@ public class GameActivity extends AppCompatActivity {
         whiteClock.setText(str);
         blackClock.setText(str);
     }
+
+
 }
