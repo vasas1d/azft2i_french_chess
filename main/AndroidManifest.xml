@@ -27,7 +27,8 @@
         <activity android:name=".ChessRulesActivity" />
         <activity android:name=".DevelopersActivity" />
         <activity android:name=".GameTiedActivity" />
-        <activity android:name=".PawnPromotionActivity" />
+        <activity android:name=".WhitePawnPromotionActivity" />
+        <activity android:name=".BlackPawnPromotionActivity" />
 
     </application>
 
