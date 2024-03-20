@@ -24,7 +24,6 @@ public class GameTiedActivity extends AppCompatActivity {
         whitePlayerName = getIntent().getStringExtra("WHITE_PLAYER_NAME");
         blackPlayerName = getIntent().getStringExtra("BLACK_PLAYER_NAME");
 
-
         Button exitButton = findViewById(R.id.exitButton);
         Button rematchButton = findViewById(R.id.rematchButton);
         Button newGameButton = findViewById(R.id.newGameButton);

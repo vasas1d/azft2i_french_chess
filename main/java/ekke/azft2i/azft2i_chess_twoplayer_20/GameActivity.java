@@ -111,6 +111,8 @@ public class GameActivity extends AppCompatActivity {
                         intent.putExtra("BLACK_PLAYER_NAME", String.valueOf(playerBlack.getName()));
                         intent.putExtra("BLACK_NICK_SCORE", String.valueOf(playerBlack.getScore()));
                         intent.putExtra("GAME_SCORE","FEHÉR FELADTA");
+                        intent.putExtra("WHITE_PLAYER",String.valueOf(playerWhite));
+                        intent.putExtra("BLACK_PLAYER",String.valueOf(playerBlack));
                         Log.d("GameActivity","- whiteResignButton onclick - fehér feladás");
                         startActivity(intent);
 
@@ -319,7 +321,20 @@ public class GameActivity extends AppCompatActivity {
         blackClock.setText(str);
     }
 
-    
+
+    //hibás
+//        private void offerDraw(String result, Player whitePlayer, Player blackPlayer) {
+//        whitePlayer.increaseScore(1);
+//        blackPlayer.increaseScore(1);
+//
+//        Intent intent = new Intent(this, GameTiedActivity.class);
+//        intent.putExtra("WHITE_PLAYER_NAME", String.valueOf(whitePlayer.getName()));
+//        intent.putExtra("WHITE_NICK_SCORE", String.valueOf(whitePlayer.getScore()));
+//        intent.putExtra("BLACK_PLAYER_NAME", String.valueOf(blackPlayer.getName()));
+//        intent.putExtra("BLACK_NICK_SCORE", String.valueOf(blackPlayer.getScore()));
+//        intent.putExtra("GAME_SCORE", result);
+//        startActivity(intent);
+//    }
 
 
 }
