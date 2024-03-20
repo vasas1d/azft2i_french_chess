@@ -35,6 +35,13 @@
     <string name="gameStartMessage">Indítás előtt adja meg a két játékos nevét.</string>
     <string name="inGameTimeText_A_Tied">Játékban eltöltött idő</string>
     <string name="inGameMoveText_A_Tied">Játékban megtett lépések</string>
+    <string name="pawn_promotion_page">Gyalog átalakulás</string>
+    <string name="pawn_figure">Gyalog</string>
+    <string name="knight_figure">Huszár</string>
+    <string name="queen_figure">Királynő</string>
+    <string name="king_figure">Király</string>
+    <string name="rook_figure">Bástya</string>
+    <string name="bishop_figure">Futó</string>
 
     <string name="chess_rules_text">Játékszabályok:\n\n
     0. A francia sakkban a (hagyományos) sakk minden szabálya érvényes (kezdőállás, lépés- és ütésmódok), az alábbiakkal kiegészítve/módosítva a szabályokat:\n
