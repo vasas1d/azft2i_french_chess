@@ -27,8 +27,14 @@
         <activity android:name=".ChessRulesActivity" />
         <activity android:name=".DevelopersActivity" />
         <activity android:name=".GameTiedActivity" />
-        <activity android:name=".WhitePawnPromotionActivity" />
-        <activity android:name=".BlackPawnPromotionActivity" />
+
+        <activity android:name=".WhitePawnPromotionActivity"
+            android:exported="false"
+            android:parentActivityName=".GameActivity"/>
+
+        <activity android:name=".BlackPawnPromotionActivity"
+            android:exported="false"
+            android:parentActivityName=".GameActivity"/>
 
     </application>
 
