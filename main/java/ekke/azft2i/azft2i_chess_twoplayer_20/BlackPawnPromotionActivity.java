@@ -1,5 +1,6 @@
 package ekke.azft2i.azft2i_chess_twoplayer_20;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
 
@@ -20,21 +21,41 @@ public class BlackPawnPromotionActivity extends AppCompatActivity{
         ImageView  buttonKnight = findViewById(R.id.imageKnight);
 
         buttonKing.setOnClickListener(v -> {
+            Intent intent = new Intent(this, GameActivity.class);
+            intent.putExtra("PAWN_PROMOTION", "KING");
+            startActivity(intent);
+            finish();
         });
 
         buttonQueen.setOnClickListener(v -> {
+            Intent intent = new Intent(this, GameActivity.class);
+            intent.putExtra("PAWN_PROMOTION", "QUEEN");
+            startActivity(intent);
+            finish();
 
         });
 
         buttonBishop.setOnClickListener(v -> {
+            Intent intent = new Intent(this, GameActivity.class);
+            intent.putExtra("PAWN_PROMOTION", "BISHOP");
+            startActivity(intent);
+            finish();
 
         });
 
         buttonRook.setOnClickListener(v -> {
+            Intent intent = new Intent(this, GameActivity.class);
+            intent.putExtra("PAWN_PROMOTION", "ROOK");
+            startActivity(intent);
+            finish();
 
         });
 
         buttonKnight.setOnClickListener(v -> {
+            Intent intent = new Intent(this, GameActivity.class);
+            intent.putExtra("PAWN_PROMOTION", "KNIGHT");
+            startActivity(intent);
+            finish();
         });
     }
 

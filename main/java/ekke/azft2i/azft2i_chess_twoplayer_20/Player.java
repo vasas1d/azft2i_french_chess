@@ -41,11 +41,4 @@ public class Player {
         return playerColor;
     }
 
-    @Override
-    public String toString() {
-        return "Játékos{" +
-                "név='" + playerNick + '\'' +
-                ", pontszám=" + playerScore +
-                '}';
-    }
 }

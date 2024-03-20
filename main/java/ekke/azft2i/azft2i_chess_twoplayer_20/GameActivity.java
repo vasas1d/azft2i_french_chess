@@ -55,6 +55,9 @@ public class GameActivity extends AppCompatActivity {
         String whitePlayerName = getIntent().getStringExtra("WHITE_PLAYER_NAME");
         String blackPlayerName = getIntent().getStringExtra("BLACK_PLAYER_NAME");
 
+        playerWhite = new Player(whitePlayerName, ekke.azft2i.azft2i_chess_twoplayer_20.pieces.Color.WHITE);
+        playerBlack = new Player(blackPlayerName, ekke.azft2i.azft2i_chess_twoplayer_20.pieces.Color.BLACK);
+
         // nevek megjelenítése az előző nézetből kapott sztringek alapján
         TextView whitePlayerNameTextView4White = findViewById(R.id.whitePlayerNameTextView4White);
         whitePlayerNameTextView4White.setText(whitePlayerName);
@@ -83,6 +86,7 @@ public class GameActivity extends AppCompatActivity {
             Intent intent = getIntent();
             finish();
             startActivity(intent);
+
         });
         findViewById(R.id.blackRestartGameButton).setOnClickListener((l) ->
         {
@@ -117,11 +121,8 @@ public class GameActivity extends AppCompatActivity {
                         SnackbarHelper.showTopSnackBar( view, "A játék folytatódik!");
                     })
                     .show();
-
-//            // mi történjen ha resign ?
-//                        Intent intent = new Intent(this, GameMainActivity.class);
-//                        startActivity(intent);
         });
+
         Button blackResignButton = findViewById(R.id.blackResignButton);
         blackResignButton.setOnClickListener(view -> {
 
@@ -139,8 +140,8 @@ public class GameActivity extends AppCompatActivity {
 
 
             Intent intent = new Intent(this, GameTiedActivity.class);
-            playerWhite.increaseScore(0);
-            playerBlack.increaseScore(1);
+            playerWhite.increaseScore(1);
+            playerBlack.increaseScore(0);
             intent.putExtra("WHITE_PLAYER_NAME", String.valueOf(playerWhite.getName()));
             intent.putExtra("WHITE_NICK_SCORE", String.valueOf(playerWhite.getScore()));
             intent.putExtra("BLACK_PLAYER_NAME", String.valueOf(playerBlack.getName()));
@@ -317,6 +318,8 @@ public class GameActivity extends AppCompatActivity {
         whiteClock.setText(str);
         blackClock.setText(str);
     }
+
+    
 
 
 }

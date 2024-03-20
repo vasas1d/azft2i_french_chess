@@ -12,7 +12,7 @@ import ekke.azft2i.azft2i_chess_twoplayer_20.board.ChessBoard;
 
 public class GameTiedActivity extends AppCompatActivity {
 
-
+    Player playerWhite, playerBlack;
     String whitePlayerName, blackPlayerName;
     TextView wClockAfterMatch, bClockAfterMatch;
 
@@ -20,6 +20,10 @@ public class GameTiedActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_tied);
+
+        whitePlayerName = getIntent().getStringExtra("WHITE_PLAYER_NAME");
+        blackPlayerName = getIntent().getStringExtra("BLACK_PLAYER_NAME");
+
 
         Button exitButton = findViewById(R.id.exitButton);
         Button rematchButton = findViewById(R.id.rematchButton);
@@ -59,8 +63,11 @@ public class GameTiedActivity extends AppCompatActivity {
 
         rematchButton.setOnClickListener(view -> {
 
-            // rossz, nem hozza be a neveket még
             Intent intent = new Intent(GameTiedActivity.this, GameActivity.class);
+            intent.putExtra("WHITE_PLAYER_NAME", whitePlayerName);
+            intent.putExtra("BLACK_PLAYER_NAME", blackPlayerName);
+            intent.putExtra("WHITE_NICK_SCORE", getIntent().getStringExtra("WHITE_NICK_SCORE"));
+            intent.putExtra("BLACK_NICK_SCORE", getIntent().getStringExtra("BLACK_NICK_SCORE"));
             startActivity(intent);
         });
 
