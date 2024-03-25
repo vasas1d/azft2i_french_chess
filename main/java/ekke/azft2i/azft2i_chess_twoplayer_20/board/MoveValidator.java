@@ -75,7 +75,7 @@ public class MoveValidator {
                 }
             }
         }
-        //idáig lmen, szóval talált ltgalább 1-et, gyorsítani a fntebbi metóust kereső algoritmussal, megeressük az elsőt valami kiválasztás tétellel, gyorskereséssel
+
         Log.d("MoveValidator", "Az aktív játékos nem tud mozogni");
         return true;
     }

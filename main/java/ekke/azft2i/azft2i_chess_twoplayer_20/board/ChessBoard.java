@@ -20,7 +20,7 @@ import ekke.azft2i.azft2i_chess_twoplayer_20.GameActivity;
 public class ChessBoard {
 
     private ChessPiece[][] board;
-    private GameActivity gameActivity; //  singletionba kellene tolni
+    private GameActivity gameActivity;
     private ChessPiece selectedPiece = null;
     private Point attackFieldXYPosition = null;
     private boolean isFirstClick = true;
@@ -116,10 +116,19 @@ public class ChessBoard {
      */
     public void addNewPiece(int x, int y, ChessPiece piece) {
         if (board[x][y] != null) {
-            Log.d("ChessBoard", "hiba - az adott mezőn figura van - addNewPiece()");
+            Log.d("ChessBoard", "HIBA - az adott mezőn figura van - addNewPiece()");
         } else {
-            board[x][y] = piece;
-            //Log.d("ChessBoard", "addNewPiece() - Új "+board[x][y].getPieceName() +" a pályán "+x +","+y+" pozíción.");
+
+            if (PawnPromotion(piece, x) == null ){
+                board[x][y] = piece;
+                //Log.d("ChessBoard", "addNewPiece() - Új "+board[x][y].getPieceName() +" a pályán "+x +","+y+" pozíción.");
+
+            } else
+            {
+                board[x][y] = new King(x, y, piece.getColor());
+            }
+
+
         }
     }
 
@@ -164,7 +173,7 @@ public class ChessBoard {
         }
 
         ChessPiece startPiece = board[startX][startY];
-        ChessPiece endPosition = board[endX][endY];  // átveszi-e a nullt, ha null a tömben az érték ?
+        ChessPiece endPosition = board[endX][endY];
 
         // ellenőrizzük, hogy a kiindulási pozícióban létezik-e bábu
         if (startPiece == null) {
@@ -208,7 +217,7 @@ public class ChessBoard {
 
 
 
-                    // nincs figura a célmezőn, egyszerűen töröljük a kezdőpozícióban a peicet, majd újat ehlyezünk fel a célpozícióba
+        // nincs figura a célmezőn, egyszerűen töröljük a kezdőpozícióban a piecet, majd újat helyezünk fel a célpozícióba
         if (endPosition == null) {
             removePieceAt(startX,startY);
             addNewPiece(endX,endY,startPiece);
@@ -233,7 +242,7 @@ public class ChessBoard {
              //   Log.d("ChessBoard", "Fekete figura a lelátóra helyezve - movePiece()");
             }
 
-            //töröljük mindkét fugurát.
+            //töröljük mindkét figurát.
             removePieceAt(endX,endY);
             removePieceAt(startX, startY);
           //  Log.d("ChessGame","- movePiece() -figurák eltávolítva 2 mezőn: "+startX+","+startY+"-> "+endX+","+endY);
@@ -270,6 +279,7 @@ public class ChessBoard {
         Color winner = moveValidator.isWinner(board);
         if(winner != null){
             refreshTurnFieldWithWinner(winner);
+
         }
 
 
@@ -298,7 +308,7 @@ public class ChessBoard {
     }
 
 
-    // inkább egy tostring kellene, a printboard helyett, vagy kuka ??
+    // kezdeti tesztelésekhez, inkább egy tostring kellene, a printboard helyett
         public void printBoard() {
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
@@ -342,9 +352,6 @@ public class ChessBoard {
 //        // Cellák számítása a képernyő méret alapján
         int screenWidth = Resources.getSystem().getDisplayMetrics().widthPixels;
         int cellSize = screenWidth / 8;
-
-
-
 
         // figurák hozzárendelése a kezdőpozíciókhoz
         for (int i = 7; i >= 0; i--) {
@@ -473,6 +480,21 @@ public class ChessBoard {
             }
         }
         chessBoardContainer.addView(chessBoard);
+    }
+
+    private Color PawnPromotion(ChessPiece piece, int endX){
+        if (!piece.getSymbol().equals("P"))
+        {
+            return null;
+        }
+
+        if (piece.getColor() == Color.WHITE && endX == 7){
+            return  Color.WHITE;
+        }
+        if (piece.getColor() == Color.BLACK && endX == 0){
+            return  Color.BLACK;
+        }
+        return null;
     }
 
 // öndokumentáló!
