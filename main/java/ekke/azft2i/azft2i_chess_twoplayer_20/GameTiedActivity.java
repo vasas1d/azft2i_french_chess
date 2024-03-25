@@ -2,6 +2,7 @@ package ekke.azft2i.azft2i_chess_twoplayer_20;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -15,6 +16,11 @@ public class GameTiedActivity extends AppCompatActivity {
     Player playerWhite, playerBlack;
     String whitePlayerName, blackPlayerName;
     TextView wClockAfterMatch, bClockAfterMatch;
+
+    public void onBackPressed() {
+        // az alapértelmezett backbutton működés tiltása.
+        Log.d("GameActivity","- onBackPressed  - back btn letiltva");
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

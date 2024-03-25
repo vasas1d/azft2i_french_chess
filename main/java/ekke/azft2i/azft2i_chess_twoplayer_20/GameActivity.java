@@ -47,6 +47,12 @@ public class GameActivity extends AppCompatActivity {
     }
 
     @Override
+    public void onBackPressed() {
+        // az alapértelmezett backbutton működés tiltása.
+        Log.d("GameActivity","- onBackPressed  - back btn letiltva");
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
@@ -82,7 +88,7 @@ public class GameActivity extends AppCompatActivity {
         findViewById(R.id.whiteRestartGameButton).setOnClickListener((l) ->
         {
 
-            // akt akt. újraindítása
+            // akt aktivity újraindítása
             Intent intent = getIntent();
             finish();
             startActivity(intent);
@@ -90,7 +96,7 @@ public class GameActivity extends AppCompatActivity {
         });
         findViewById(R.id.blackRestartGameButton).setOnClickListener((l) ->
         {
-            // akt akt. újraindítása
+            // akt aktivity újraindítása
             Intent intent = getIntent();
             finish();
             startActivity(intent);
