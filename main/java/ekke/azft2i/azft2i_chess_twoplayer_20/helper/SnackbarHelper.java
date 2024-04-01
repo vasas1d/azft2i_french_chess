@@ -10,7 +10,7 @@ import com.google.android.material.snackbar.Snackbar;
 
 public class SnackbarHelper {
     /**
-     * Megjeleníti a paraméterben kapott szöveget egy Snackbar emelben a
+     * Megjeleníti a paraméterben kapott szöveget egy Snackbar elemben a
      * nézet tetején 180 fokban elforgatva. a fekete játékosnak szánt felugró
      * értesítésének kijelzésére szlgál
      *

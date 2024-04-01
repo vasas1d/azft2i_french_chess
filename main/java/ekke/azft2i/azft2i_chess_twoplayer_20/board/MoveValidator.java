@@ -39,7 +39,7 @@ public class MoveValidator {
         return false;
     }
 
-    // öndokumentáló kell, vagy átírni a streamet noobra , de inkább dokumentálni forrásmegjelölssel
+    // öndokumentáló kell
     public Color isWinner(ChessPiece[][] board){
         boolean whitePieceFound = false;
         boolean blackPieceFound = false;

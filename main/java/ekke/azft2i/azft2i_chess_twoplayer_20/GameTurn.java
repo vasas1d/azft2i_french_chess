@@ -18,7 +18,7 @@ public class GameTurn {
 
     private static long whiteRemainingTime;
     private static long blackRemainingTime;
-    long playerTime = 600000; //480000//720000; // azaz 10 percig tart a játék
+    long playerTime = 600000; //480000//720000; //
 
     /**
      * Az összes maradék idő beállítása a játékosoknak.

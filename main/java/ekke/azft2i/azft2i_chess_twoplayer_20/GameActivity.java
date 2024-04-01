@@ -48,8 +48,8 @@ public class GameActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        // az alapértelmezett backbutton működés tiltása.
-        Log.d("GameActivity","- onBackPressed  - back btn letiltva");
+        // az alapértelmezett backbutton működés tiltása
+        Log.d("GameActivity","- onBackPressed  - Vissza gomb használat letiltva!");
     }
 
     @Override

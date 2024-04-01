@@ -69,35 +69,33 @@ public class ChessBoard {
     private void initializeBoard() {
         board = new ChessPiece[8][8];
 
-        // Bábuk elhelyezése a kezdő pozíciókra
-        // Fehér bábuk
-        board[0][0] = new Rook(0, 0, Color.WHITE);
-        board[0][1] = new Knight(0, 1, Color.WHITE);
-        board[0][2] = new Bishop(0, 2, Color.WHITE);
-        board[0][3] = new Queen(0, 3, Color.WHITE);
-        board[0][4] = new King(0, 4, Color.WHITE);
-        board[0][5] = new Bishop(0, 5, Color.WHITE);
-        board[0][6] = new Knight(0, 6, Color.WHITE);
-        board[0][7] = new Rook(0, 7, Color.WHITE);
+        // fehér bábuk
+        board[0][0] = ChessPieceFactory.initializeChessPiece("R", 0, 0, Color.WHITE);
+        board[0][1] = ChessPieceFactory.initializeChessPiece("N", 0, 1, Color.WHITE);
+        board[0][2] = ChessPieceFactory.initializeChessPiece("B", 0, 2, Color.WHITE);
+        board[0][3] = ChessPieceFactory.initializeChessPiece("Q", 0, 3, Color.WHITE);
+        board[0][4] = ChessPieceFactory.initializeChessPiece("K", 0, 4, Color.WHITE);
+        board[0][5] = ChessPieceFactory.initializeChessPiece("B", 0, 5, Color.WHITE);
+        board[0][6] = ChessPieceFactory.initializeChessPiece("N", 0, 6, Color.WHITE);
+        board[0][7] = ChessPieceFactory.initializeChessPiece("R", 0, 7, Color.WHITE);
 
         for (int i = 0; i < 8; i++) {
-            board[1][i] = new Pawn(1, i, Color.WHITE);
+            board[1][i] = ChessPieceFactory.initializeChessPiece("P", 1, i, Color.WHITE);
         }
 
-        // Fekete bábuk
-        board[7][0] = new Rook(7, 0, Color.BLACK);
-        board[7][1] = new Knight(7, 1, Color.BLACK);
-        board[7][2] = new Bishop(7, 2, Color.BLACK);
-        board[7][3] = new Queen(7, 3, Color.BLACK);
-        board[7][4] = new King(7, 4, Color.BLACK);
-        board[7][5] = new Bishop(7, 5, Color.BLACK);
-        board[7][6] = new Knight(7, 6, Color.BLACK);
-        board[7][7] = new Rook(7, 7, Color.BLACK);
+        // fekete bábuk
+        board[7][0] = ChessPieceFactory.initializeChessPiece("R", 7, 0, Color.BLACK);
+        board[7][1] = ChessPieceFactory.initializeChessPiece("N", 7, 1, Color.BLACK);
+        board[7][2] = ChessPieceFactory.initializeChessPiece("B", 7, 2, Color.BLACK);
+        board[7][3] = ChessPieceFactory.initializeChessPiece("Q", 7, 3, Color.BLACK);
+        board[7][4] = ChessPieceFactory.initializeChessPiece("K", 7, 4, Color.BLACK);
+        board[7][5] = ChessPieceFactory.initializeChessPiece("B", 7, 5, Color.BLACK);
+        board[7][6] = ChessPieceFactory.initializeChessPiece("N", 7, 6, Color.BLACK);
+        board[7][7] = ChessPieceFactory.initializeChessPiece("R", 7, 7, Color.BLACK);
 
         for (int i = 0; i < 8; i++) {
-            board[6][i] = new Pawn(6, i, Color.BLACK);
+            board[6][i] = ChessPieceFactory.initializeChessPiece("P", 6, i, Color.BLACK);
         }
-
 
         // a kezdeti üres mezők
         for (int i = 2; i < 6; i++) {
@@ -105,6 +103,55 @@ public class ChessBoard {
                 board[i][j] = null;
             }
         }
+
+
+
+
+
+
+
+
+// factory metothra javítva
+//        // Bábuk elhelyezése a kezdő pozíciókra
+//        // Fehér bábuk
+//        board[0][0] = new Rook(0, 0, Color.WHITE);
+//        board[0][1] = new Knight(0, 1, Color.WHITE);
+//        board[0][2] = new Bishop(0, 2, Color.WHITE);
+//        board[0][3] = new Queen(0, 3, Color.WHITE);
+//        board[0][4] = new King(0, 4, Color.WHITE);
+//        board[0][5] = new Bishop(0, 5, Color.WHITE);
+//        board[0][6] = new Knight(0, 6, Color.WHITE);
+//        board[0][7] = new Rook(0, 7, Color.WHITE);
+//
+//        for (int i = 0; i < 8; i++) {
+//            board[1][i] = new Pawn(1, i, Color.WHITE);
+//        }
+//
+//        // Fekete bábuk
+//        board[7][0] = new Rook(7, 0, Color.BLACK);
+//        board[7][1] = new Knight(7, 1, Color.BLACK);
+//        board[7][2] = new Bishop(7, 2, Color.BLACK);
+//        board[7][3] = new Queen(7, 3, Color.BLACK);
+//        board[7][4] = new King(7, 4, Color.BLACK);
+//        board[7][5] = new Bishop(7, 5, Color.BLACK);
+//        board[7][6] = new Knight(7, 6, Color.BLACK);
+//        board[7][7] = new Rook(7, 7, Color.BLACK);
+//
+//        for (int i = 0; i < 8; i++) {
+//            board[6][i] = new Pawn(6, i, Color.BLACK);
+//        }
+//        // a kezdeti üres mezők
+//        for (int i = 2; i < 6; i++) {
+//            for (int j = 0; j < 8; j++) {
+//                board[i][j] = null;
+//            }
+//        }
+
+
+
+
+
+
     }
 
     /**

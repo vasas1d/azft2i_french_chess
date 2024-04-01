@@ -20,7 +20,7 @@ public class ChessTimer {
         this.gameActivity = gameActivity;
         this.handler = new Handler();
         initializeClock(remainingTime);
-        this.runnable = this::onTimerTick; // labdával 5 sor helyett 1 sorban, okos ez az adnroid studio..
+        this.runnable = this::onTimerTick; // labdával 5 sor helyett 1 sorban
     }
 
     public void startTimer() {
@@ -36,12 +36,6 @@ public class ChessTimer {
             isRunning = false;
         }
     }
-//
-//    private void resetTimer() {
-//        stopTimer();
-//        remainingTime = totalTime;
-//        startTimer();
-//    }
 
     private void onTimerTick() {
         updatePlayerClock();
@@ -54,10 +48,6 @@ public class ChessTimer {
         handler.postDelayed(runnable, 1000);
 
     }
-
-//    private boolean isTimeOver(){
-//        return getRemainingTime() <= 0;
-//    }
 
     private void updatePlayerClock() {
         if (gameActivity != null) {
