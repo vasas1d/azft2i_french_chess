@@ -18,6 +18,10 @@ public class Bishop extends ChessPiece {
      */
     @Override
     public boolean isValidMove(int newX, int newY, ChessPiece[][] board) {
+        // ha a célmező ugyanaz, mint az aktuális pozíció, akkor nem léphet.
+        if (newX == xPosition && newY == yPosition) {
+            return false;
+        }
         // A futó csak átlósan tud lépni bármennyi mezőt
         int deltaX = Math.abs(newX - xPosition);
         int deltaY = Math.abs(newY - yPosition);

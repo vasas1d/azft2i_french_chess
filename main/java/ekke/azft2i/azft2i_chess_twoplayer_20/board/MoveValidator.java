@@ -18,7 +18,6 @@ public class MoveValidator {
         return false;
     }
 
-    // forrásmegjelölés, h honnan a stream
     public boolean isAttackModeAvailable(ChessPiece[][] board, boolean isWhiteMove) {
         for (int x = 0; x < board.length; x++) {
             for (int y = 0; y < board[0].length; y++) {
@@ -32,14 +31,11 @@ public class MoveValidator {
                     if (first.isPresent()) {
                         return true;
                     }
-
                 }
             }
         }
         return false;
     }
-
-    // öndokumentáló kell
     public Color isWinner(ChessPiece[][] board){
         boolean whitePieceFound = false;
         boolean blackPieceFound = false;
@@ -54,13 +50,12 @@ public class MoveValidator {
             }
         }
         if (blackPieceFound ^ whitePieceFound){//ha csak az egyik teljesül (kizáró vagy){
-            if(blackPieceFound) return Color.BLACK;
-            if(whitePieceFound) return Color.WHITE;
+            if(blackPieceFound) return Color.WHITE;
+            if(whitePieceFound) return Color.BLACK;
         }
         return null;
     }
 
-    // vagyis a döntetlen
     public boolean isGameTied(ChessPiece[][] board, boolean isWhiteMove){
         Color activeColor = isWhiteMove ? Color.WHITE : Color.BLACK;
 

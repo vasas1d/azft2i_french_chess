@@ -16,13 +16,17 @@ public class Rook extends ChessPiece {
      */
     @Override
     public boolean isValidMove(int newX, int newY, ChessPiece[][] board) {
+        // ha a célmező ugyanaz, mint az aktuális pozíció, akkor nem léphet.
+        if (newX == xPosition && newY == yPosition) {
+            return false;
+        }
         // csak egy iranyba lephet
-        if(newX != xPosition && newY!=yPosition){
+        if(newX != xPosition && newY != yPosition){
             return false;
         }
 
 
-        //ha vizszintes, megnézzük az összes mezőt az aktuális pozi és az end pozi között, hogy üres-e
+        //ha vizszintes, megnézzük az összes mezőt az aktuális pozició és az end pozició között, hogy üres-e
         if(newX != xPosition){
             int direction = (newX-xPosition > 0) ? 1 : -1;
             for(int x = xPosition+direction; x!=newX; x = x + direction) {
