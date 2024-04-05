@@ -101,45 +101,6 @@ public class ChessBoard {
                 board[i][j] = null;
             }
         }
-
-
-// factory metothra javítva
-//        // Bábuk elhelyezése a kezdő pozíciókra
-//        // Fehér bábuk
-//        board[0][0] = new Rook(0, 0, Color.WHITE);
-//        board[0][1] = new Knight(0, 1, Color.WHITE);
-//        board[0][2] = new Bishop(0, 2, Color.WHITE);
-//        board[0][3] = new Queen(0, 3, Color.WHITE);
-//        board[0][4] = new King(0, 4, Color.WHITE);
-//        board[0][5] = new Bishop(0, 5, Color.WHITE);
-//        board[0][6] = new Knight(0, 6, Color.WHITE);
-//        board[0][7] = new Rook(0, 7, Color.WHITE);
-//
-//        for (int i = 0; i < 8; i++) {
-//            board[1][i] = new Pawn(1, i, Color.WHITE);
-//        }
-//
-//        // Fekete bábuk
-//        board[7][0] = new Rook(7, 0, Color.BLACK);
-//        board[7][1] = new Knight(7, 1, Color.BLACK);
-//        board[7][2] = new Bishop(7, 2, Color.BLACK);
-//        board[7][3] = new Queen(7, 3, Color.BLACK);
-//        board[7][4] = new King(7, 4, Color.BLACK);
-//        board[7][5] = new Bishop(7, 5, Color.BLACK);
-//        board[7][6] = new Knight(7, 6, Color.BLACK);
-//        board[7][7] = new Rook(7, 7, Color.BLACK);
-//
-//        for (int i = 0; i < 8; i++) {
-//            board[6][i] = new Pawn(6, i, Color.BLACK);
-//        }
-//        // a kezdeti üres mezők
-//        for (int i = 2; i < 6; i++) {
-//            for (int j = 0; j < 8; j++) {
-//                board[i][j] = null;
-//            }
-//        }
-
-
     }
 
     /**
@@ -216,13 +177,12 @@ public class ChessBoard {
                 || !turn.isWhiteMove() && startPiece.getColor().equals(Color.WHITE)) {
             return;
         }
-        //ellenőrízzük, hogy nem-e saját bábut akar leütni
+        //ellenőrizzük, hogy nem-e saját bábut akar leütni
         if (endPosition != null && endPosition.getColor().equals(startPiece.getColor())) {
             return;
         }
 
-        // ellenőrizzük, hogy a bábu szabályosan mozog-e
-        // moveValidator
+        // ellenőrizzük, hogy a bábu szabályosan mozog-e // moveValidator
         if (!startPiece.isValidMove(endX, endY, board)) {
             Log.d("ChessBoard", "HIBA - Érvénytelen mozgás a validálás közben, a mozgás nem megtehető.- movePiece()");
             return;
@@ -241,11 +201,8 @@ public class ChessBoard {
             str = generateMoveString(startX, startY, endX, endY, board);
         }
         Log.d("ChessBoard", "movePiece()->generateMoveString(): " + str);
-        updatePlayersMovesText(str); // a lépések logolása az UI-ra itt történik
-        /////
-
+        updatePlayersMovesText(str); // a lépések logolása az UI-ra
         updateAllMoves(str + " ");
-
 
         // nincs figura a célmezőn, egyszerűen töröljük a kezdőpozícióban a piecet, majd újat helyezünk fel a célpozícióba
         if (endPosition == null) {
@@ -293,16 +250,15 @@ public class ChessBoard {
         //Log.d("ChessGame","- movePiece() - lefutott -"+startX+","+startY+"-> "+endX+","+endY);
 
 
-        // döntetlen lett, itt kellene egy gv, h az nyer akinek több a bábja !
+        // döntetlen lett!
         boolean scoreTied = moveValidator.isGameTied(board, turn.isWhiteMove());
         if (scoreTied) {
             Log.d("ChessBoard", "-movepiece() -- DÖNTETLEN -");
             refreshTurnFieldWithGameTied(); // logüzenet kiírása
-            // lépjen át a döntetlen oldalra. és csak sleepelni a jelenlegit.
         }
 
 
-        //;;;; győzelem, de menjünk akkor új lapra is
+        //;;;; győzelem
         Color winner = moveValidator.isWinner(board);
         if (winner != null) {
             refreshTurnFieldWithWinner(winner);
@@ -366,7 +322,7 @@ public class ChessBoard {
         // Törölje a sakktáblát, ha már létezik
         chessBoardContainer.removeAllViews();
 
-// GridLayout a bábukhoz
+        // GridLayout a bábukhoz
         GridLayout chessBoard = new GridLayout(gameActivity);
         chessBoard.setLayoutParams(new FrameLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT,
@@ -374,8 +330,8 @@ public class ChessBoard {
 
         chessBoard.setColumnCount(8);
         chessBoard.setRowCount(8);
-//
-//        // Cellák számítása a képernyő méret alapján
+
+        // Cellák számítása a képernyő méret alapján
         int screenWidth = Resources.getSystem().getDisplayMetrics().widthPixels;
         int cellSize = screenWidth / 8;
 
@@ -385,10 +341,10 @@ public class ChessBoard {
                 ChessPiece piece = board[i][j];
                 ImageView pieceView = new ImageView(gameActivity);
 
-                // Kép pozicionálása az ImageView-ban
+                // kép pozicionálása az ImageView-ban
                 pieceView.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
 
-                // A bábu pozíciójának beállítása a GridLayout-ban
+                // a bábu pozíciójának beállítása a GridLayout-ban
                 GridLayout.LayoutParams params = new GridLayout.LayoutParams();
                 params.width = cellSize;
                 params.height = cellSize;
@@ -407,8 +363,6 @@ public class ChessBoard {
                     whitePlayerTextView.setText(activeUser);
                     if (board[row][col] != null) {
                         // Log.d("ChessBoard", "Clicked on cell 1 (" + row + ", " + col + ")");
-                        //ChessPiece clickedPiece = board[row][col];
-
                         if (isFirstClick) {
                             isFirstClick = false;
                             selectedPiece = board[row][col];
@@ -419,13 +373,9 @@ public class ChessBoard {
 
                             movePiece(selectedPiece.getXPosition(), selectedPiece.getYPosition(), attackFieldXYPosition.x, attackFieldXYPosition.y);
                             // Log.d("ChessBoard", "pieceView.setOnClickListener 2. kattintás-- Mozgás történt figurás mezőre mezőre:"+this.selectedPiece.getXPosition()+","+this.selectedPiece.getYPosition()+"--> (" + row + ", " + col + ")");
-
-
                         }
 
-
                     } else {
-                        // nincs figura a mezőn, ez itt kell-e ?? de ha nincs figura a mezőn akkor az tán nem is ez az ág
                         //Log.d("ChessBoard", "Clicked on empty cell 1(" + row + ", " + col + ")");
                         if (!isFirstClick) {
                             isFirstClick = true;
@@ -433,49 +383,12 @@ public class ChessBoard {
 
                             movePiece(selectedPiece.getXPosition(), selectedPiece.getYPosition(), attackFieldXYPosition.x, attackFieldXYPosition.y);
                             // Log.d("ChessBoard", "pieceView.setOnClickListener -- Mozgás történt tán üres mezőre:"+this.selectedPiece.getXPosition()+","+this.selectedPiece.getYPosition()+"--> (" + row + ", " + col + ")");
-
                         }
                     }
                 });
-
-
-                pieceView.setOnLongClickListener(v -> {
-
-
-                    if (board[row][col] != null) {
-                        // Log.d("ChessBoard", "Óriásklikk clicked on cell 2(" + row + ", " + col + ")");
-                        ChessPiece clickedPiece = board[row][col];
-
-                        // Figura lehetséges lépései piros kerettel kiemelve
-                        for (Point move : clickedPiece.getPossibleAllMoves(board)) {
-                            int newX = move.x;
-                            int newY = move.y;
-
-                            // Ellenőrzés, hogy a lehetséges lépés érvényes-e
-                            if (newX >= 0 && newX < 8 && newY >= 0 && newY < 8) {
-                                ChessPiece endPiece = board[newX][newY];
-
-                                // Ha a célpont mező üres, vagy az ellenfél bábuja van rajta
-                                if (endPiece == null || endPiece.getColor() != clickedPiece.getColor()) {
-
-                                    ImageView emptyView = (ImageView) chessBoard.getChildAt((7 - newX) * 8 + newY);
-
-                                    // piros keret beállítása, tesztelés miatt
-
-                                    emptyView.setBackgroundResource(R.color.pureRed);
-                                    emptyView.setBackgroundColor(ContextCompat.getColor(gameActivity, R.color.pureRed));
-
-                                }
-                            }
-                        }
-                        return true; //
-                    }
-                    return false; //
-                });
-
 
                 if (piece != null) {
-                    // Beállítjuk a bábu képét a pozíciója alapján
+                    // beállítjuk a bábu képét a pozíciója alapján
                     pieceView.setImageResource(piece.getImageFileName());
 
                     // hozzáfűzés a GridLayout-hoz
@@ -504,7 +417,16 @@ public class ChessBoard {
         }
         chessBoardContainer.addView(chessBoard);
     }
-
+    /**
+     * A gyalog átalakulását kezelő metódus.
+     * Ez a metódus ellenőrzi, hogy a megadott gyalog elérte-e az alapvonalat
+     * a játék során, és így szükség van-e átalakulásra. Ha a gyalog elérte az alapvonalat,
+     * akkor visszatér a gyalog színével, ami alapjána játék folyamán a gyalog átalakulása történik.
+     *
+     * @param piece Az a sakkfigura, amelyről meg kell állapítani, hogy átalakul-e
+     * @param endX Az X koordináta, ahova a figura lépett
+     * @return A figura színe (WHITE vagy BLACK), ha átalakulásra kerül sor, egyébként null
+     */
     private Color PawnPromotion(ChessPiece piece, int endX) {
         if (!piece.getSymbol().equals("P")) {
             return null;
@@ -518,8 +440,9 @@ public class ChessBoard {
         }
         return null;
     }
-
-    // öndokumentáló!
+    /**
+     * Az aktuális aktív játékos kijelzésére szolgáló szövegét állítja be a megfelelő TextView-kon a felhasználói felületen.
+     */
     private void refreshTurnField() {
         TextView whitePlayerTextView = gameActivity.findViewById(R.id.whitePlayerTextView);
         TextView blackPlayerTextView = gameActivity.findViewById(R.id.blackPlayerTextView);
@@ -537,19 +460,23 @@ public class ChessBoard {
             blackPlayerTextView.setTextColor(android.graphics.Color.WHITE);
         }
     }
-
-
-    //mezőfrissítés győzemere
+    /**
+     * Frissíti a játékfelületen megjelenő két kijelző TextView-t a győztes alapján.
+     * Az aktív játékos színét és szövegét állítja be a fehér és fekete játékosnak megfelelő
+     * TextView elemekre a felhasználói felületen, amikor győzelem történt.
+     *
+     * @param winnerColor A győztes játékos színe (WHITE vagy BLACK)
+     */
     private void refreshTurnFieldWithWinner(Color winnerColor) {
         TextView whitePlayerTextView = gameActivity.findViewById(R.id.whitePlayerTextView);
         TextView blackPlayerTextView = gameActivity.findViewById(R.id.blackPlayerTextView);
         String activeUser = "Győztes :" + winnerColor.toString();
         whitePlayerTextView.setText(activeUser);
         blackPlayerTextView.setText(activeUser);
-
     }
-
-    //mezőfrissítés döntetlenre
+    /**
+     * Frissíti a játékfelületen megjelenő két kijelző TextView-t döntetlen eredmény esetén.
+     */
     private void refreshTurnFieldWithGameTied() {
         TextView whitePlayerTextView = gameActivity.findViewById(R.id.whitePlayerTextView);
         TextView blackPlayerTextView = gameActivity.findViewById(R.id.blackPlayerTextView);
@@ -557,7 +484,6 @@ public class ChessBoard {
         whitePlayerTextView.setText(gameTiedStr);
         blackPlayerTextView.setText(gameTiedStr);
     }
-
     /**
      * A generateMoveString metódus létrehoz egy sakk lépést szöveges formátumban a paraméterként kapott értékek alapján.
      * A bemeneti paraméterek alapján a kimeneti értékben visszaadja a mozgó figura szimbulómát, kivéve gyalog esetén,
@@ -621,6 +547,6 @@ public class ChessBoard {
         whitePlayerMovesText.append(move + " ");
         blackPlayerMovesText.append(move + " ");
     }
-
+    // teszteléshez csak
     public ChessBoard getBoard() { return this; }
 }
