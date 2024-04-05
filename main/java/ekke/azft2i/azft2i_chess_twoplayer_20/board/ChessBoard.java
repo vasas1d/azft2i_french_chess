@@ -1,6 +1,9 @@
 package ekke.azft2i.azft2i_chess_twoplayer_20.board;
 
 
+import static android.graphics.Color.argb;
+import static android.graphics.Color.rgb;
+
 import android.annotation.SuppressLint;
 import android.content.res.Resources;
 import android.graphics.Point;
@@ -26,9 +29,9 @@ public class ChessBoard {
     private ChessPiece selectedPiece = null;
     private Point attackFieldXYPosition = null;
     private boolean isFirstClick = true;
+    private ImageView clickedPieceView = null;
     private static String allMoves = "";
     private MoveValidator moveValidator = new MoveValidator();
-
     public GameTurn getTurn() {
         return turn;
     }
@@ -289,7 +292,7 @@ public class ChessBoard {
             }
         }
     }
-    
+
     /**
      * Kirajzolja a bábukat a grafikus sakktáblára.
      * A metódus létrehoz egy GridLayout-ot a bábuk megjelenítéséhez a sakktáblán. Ha már létezik
@@ -316,7 +319,7 @@ public class ChessBoard {
         chessBoard.setColumnCount(8);
         chessBoard.setRowCount(8);
 
-        // Cellák számítása a képernyő méret alapján
+        // cellák számítása a képernyő méret alapján
         int screenWidth = Resources.getSystem().getDisplayMetrics().widthPixels;
         int cellSize = screenWidth / 8;
 
@@ -346,18 +349,27 @@ public class ChessBoard {
                     TextView whitePlayerTextView = gameActivity.findViewById(R.id.whitePlayerTextView);
                     String activeUser = turn.isWhiteMove() ? "Fehér következik" : "Fekete következik";
                     whitePlayerTextView.setText(activeUser);
-                    if (board[row][col] != null) {
+                    Color actualPlayerColor = turn.isWhiteMove() ? Color.WHITE : Color.BLACK;
+
+                    if (board[row][col] != null && board[row][col].getColor() == actualPlayerColor) {
                         // Log.d("ChessBoard", "Clicked on cell 1 (" + row + ", " + col + ")");
                         if (isFirstClick) {
+                            clickedPieceView = pieceView;
                             isFirstClick = false;
                             selectedPiece = board[row][col];
-                            pieceView.setBackgroundColor(111);
+                            pieceView.setBackgroundColor(argb(128, 0, 255, 0));
                         } else {
-                            isFirstClick = true;
-                            attackFieldXYPosition = new Point(row, col);
-
-                            movePiece(selectedPiece.getXPosition(), selectedPiece.getYPosition(), attackFieldXYPosition.x, attackFieldXYPosition.y);
-                            // Log.d("ChessBoard", "pieceView.setOnClickListener 2. kattintás-- Mozgás történt figurás mezőre mezőre:"+this.selectedPiece.getXPosition()+","+this.selectedPiece.getYPosition()+"--> (" + row + ", " + col + ")");
+                            if ( selectedPiece != null){
+                                if (board[row][col].getColor() == actualPlayerColor){
+                                    isFirstClick = true;
+                                    clickedPieceView.setBackgroundColor(argb(0, 0, 0, 0));
+                                } else {
+                                    attackFieldXYPosition = new Point(row, col);
+                                    movePiece(selectedPiece.getXPosition(), selectedPiece.getYPosition(), attackFieldXYPosition.x, attackFieldXYPosition.y);
+                                    isFirstClick = true;
+                                    // Log.d("ChessBoard", "pieceView.setOnClickListener 2. kattintás-- Mozgás történt figurás mezőre mezőre:"+this.selectedPiece.getXPosition()+","+this.selectedPiece.getYPosition()+"--> (" + row + ", " + col + ")");
+                                }
+                            }
                         }
 
                     } else {
@@ -365,9 +377,8 @@ public class ChessBoard {
                         if (!isFirstClick) {
                             isFirstClick = true;
                             this.attackFieldXYPosition = new Point(row, col);
-
                             movePiece(selectedPiece.getXPosition(), selectedPiece.getYPosition(), attackFieldXYPosition.x, attackFieldXYPosition.y);
-                            // Log.d("ChessBoard", "pieceView.setOnClickListener -- Mozgás történt tán üres mezőre:"+this.selectedPiece.getXPosition()+","+this.selectedPiece.getYPosition()+"--> (" + row + ", " + col + ")");
+                            // Log.d("ChessBoard", "pieceView.setOnClickListener -- Mozgás történt lehetséges üres mezőre:"+this.selectedPiece.getXPosition()+","+this.selectedPiece.getYPosition()+"--> (" + row + ", " + col + ")");
                         }
                     }
                 });
