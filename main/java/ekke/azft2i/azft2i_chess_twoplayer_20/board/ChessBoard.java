@@ -289,22 +289,7 @@ public class ChessBoard {
             }
         }
     }
-
-
-    // kezdeti tesztelésekhez, inkább egy tostring kellene, a printboard helyett
-    public void printBoard() {
-        for (int i = 0; i < 8; i++) {
-            for (int j = 0; j < 8; j++) {
-                if (board[i][j] == null) {
-                    System.out.print(" - ");
-                } else {
-                    System.out.print(" " + board[i][j].getSymbol() + " ");
-                }
-            }
-            System.out.println();
-        }
-    }
-
+    
     /**
      * Kirajzolja a bábukat a grafikus sakktáblára.
      * A metódus létrehoz egy GridLayout-ot a bábuk megjelenítéséhez a sakktáblán. Ha már létezik
