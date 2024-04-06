@@ -1,9 +1,12 @@
-package ekke.azft2i.azft2i_chess_twoplayer_20;
+package ekke.azft2i.azft2i_chess_twoplayer_20.game;
 
 
 
 import android.util.Log;
+
+import ekke.azft2i.azft2i_chess_twoplayer_20.GameActivity;
 import ekke.azft2i.azft2i_chess_twoplayer_20.helper.ChessTimer;
+import ekke.azft2i.azft2i_chess_twoplayer_20.pieces.Color;
 
 
 /**
@@ -18,7 +21,7 @@ public class GameTurn {
 
     private static long whiteRemainingTime;
     private static long blackRemainingTime;
-    long playerTime = 600000; //480000//720000; //
+    long playerTime = 60000; // 10 perc? //480000//720000; //
 
     /**
      * Az összes maradék idő beállítása a játékosoknak.
@@ -58,8 +61,8 @@ public class GameTurn {
         this.turnNumber = 1;
         this.isWhiteMove = true;
         //Log.d("GameTurn","konstruktor lefutott ");
-        this.whitePlayerClock = new ChessTimer(playerTime, gameActivity);
-        this.blackPlayerClock = new ChessTimer(playerTime, gameActivity);
+        this.whitePlayerClock = new ChessTimer(playerTime, gameActivity, Color.WHITE);
+        this.blackPlayerClock = new ChessTimer(playerTime, gameActivity, Color.BLACK);
         setAllRemainingTime();
         startWhiteClock(whitePlayerClock);
 

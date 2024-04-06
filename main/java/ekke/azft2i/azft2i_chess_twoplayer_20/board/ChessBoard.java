@@ -15,9 +15,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import androidx.core.content.ContextCompat;
-
-import ekke.azft2i.azft2i_chess_twoplayer_20.GameTurn;
+import ekke.azft2i.azft2i_chess_twoplayer_20.game.GameTurn;
 import ekke.azft2i.azft2i_chess_twoplayer_20.R;
 import ekke.azft2i.azft2i_chess_twoplayer_20.pieces.*;
 import ekke.azft2i.azft2i_chess_twoplayer_20.GameActivity;
@@ -258,6 +256,8 @@ public class ChessBoard {
         if (scoreTied) {
             Log.d("ChessBoard", "-movepiece() -- DÖNTETLEN -");
             refreshTurnFieldWithGameTied(); // logüzenet kiírása
+
+            gameActivity.openGameResultActivity(0, 0, "Döntetlen");
         }
 
 
@@ -265,7 +265,9 @@ public class ChessBoard {
         Color winner = moveValidator.isWinner(board);
         if (winner != null) {
             refreshTurnFieldWithWinner(winner);
-
+            int whiteScore = winner.equals(Color.WHITE) ? 1 : 0;
+            int blackScore = winner.equals(Color.BLACK) ? 1 : 0;
+            gameActivity.openGameResultActivity(whiteScore, blackScore, "Győzelem");
         }
 
 
@@ -397,15 +399,14 @@ public class ChessBoard {
 
                     // hozzáfűzés a GridLayout-hoz és onclick beállítása
                     chessBoard.addView(emptyView);
-                    // emptyView.setOnClickListener(v -> Log.d("ChessBoard", "Clicked on empty cell 2(" + row + ", " + col + ")"));
                     emptyView.setOnClickListener(v -> {
-                        // Log.d("ChessBoard", "Clicked on empty cell #2(" + row + ", " + col + ")");
+                         Log.d("ChessBoard", "Clicked on empty cell #2(" + row + ", " + col + ")");
                         if (!isFirstClick) {
                             isFirstClick = true;
                             this.attackFieldXYPosition = new Point(row, col);
 
                             movePiece(selectedPiece.getXPosition(), selectedPiece.getYPosition(), attackFieldXYPosition.x, attackFieldXYPosition.y);
-                            // Log.d("ChessBoard", "Mozgás történt #2:"+this.selectedPiece.getXPosition()+","+this.selectedPiece.getYPosition()+"-->(" + row + ", " + col + ")");
+                             Log.d("ChessBoard", "Mozgás történt #2:"+this.selectedPiece.getXPosition()+","+this.selectedPiece.getYPosition()+"-->(" + row + ", " + col + ")");
                         }
                     });
                 }

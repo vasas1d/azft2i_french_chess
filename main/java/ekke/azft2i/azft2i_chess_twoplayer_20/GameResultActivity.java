@@ -9,9 +9,11 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import ekke.azft2i.azft2i_chess_twoplayer_20.board.ChessBoard;
+import ekke.azft2i.azft2i_chess_twoplayer_20.game.GameTurn;
+import ekke.azft2i.azft2i_chess_twoplayer_20.game.Player;
 
 
-public class GameTiedActivity extends AppCompatActivity {
+public class GameResultActivity extends AppCompatActivity {
 
     Player playerWhite, playerBlack;
     String whitePlayerName, blackPlayerName;
@@ -62,13 +64,13 @@ public class GameTiedActivity extends AppCompatActivity {
         blackPlayerScoreText.setText(getIntent().getStringExtra("BLACK_NICK_SCORE"));
 
         exitButton.setOnClickListener(view -> {
-            Intent intent = new Intent(GameTiedActivity.this, GameMainActivity.class);
+            Intent intent = new Intent(GameResultActivity.this, GameMainActivity.class);
             startActivity(intent);
         });
 
         rematchButton.setOnClickListener(view -> {
 
-            Intent intent = new Intent(GameTiedActivity.this, GameActivity.class);
+            Intent intent = new Intent(GameResultActivity.this, GameActivity.class);
             intent.putExtra("WHITE_PLAYER_NAME", whitePlayerName);
             intent.putExtra("BLACK_PLAYER_NAME", blackPlayerName);
             intent.putExtra("WHITE_NICK_SCORE", getIntent().getStringExtra("WHITE_NICK_SCORE"));
@@ -77,7 +79,7 @@ public class GameTiedActivity extends AppCompatActivity {
         });
 
         newGameButton.setOnClickListener(view -> {
-            Intent intent = new Intent(GameTiedActivity.this, GameStartActivity.class);
+            Intent intent = new Intent(GameResultActivity.this, GameStartActivity.class);
             startActivity(intent);
         });
 

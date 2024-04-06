@@ -1,4 +1,4 @@
-package ekke.azft2i.azft2i_chess_twoplayer_20;
+package ekke.azft2i.azft2i_chess_twoplayer_20.game;
 
 import ekke.azft2i.azft2i_chess_twoplayer_20.pieces.Color;
 

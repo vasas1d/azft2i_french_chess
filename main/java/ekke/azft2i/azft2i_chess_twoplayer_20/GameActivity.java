@@ -20,6 +20,8 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.snackbar.Snackbar;
 import ekke.azft2i.azft2i_chess_twoplayer_20.board.ChessBoard;
+import ekke.azft2i.azft2i_chess_twoplayer_20.game.Player;
+import ekke.azft2i.azft2i_chess_twoplayer_20.helper.GameResults;
 import ekke.azft2i.azft2i_chess_twoplayer_20.helper.SnackbarHelper;
 
 public class GameActivity extends AppCompatActivity {
@@ -109,13 +111,12 @@ public class GameActivity extends AppCompatActivity {
                     .setMessage("Biztosan szeretnéd feladni a játékot?")
                     .setPositiveButton("Igen", (dialog, which) -> {
 
-                        Intent intent = new Intent(this, GameTiedActivity.class);
-                        playerWhite.increaseScore(0);
-                        playerBlack.increaseScore(1);
+                        Intent intent = new Intent(this, GameResultActivity.class);
+                        GameResults.BLACK_SCORE++;
                         intent.putExtra("WHITE_PLAYER_NAME", String.valueOf(playerWhite.getName()));
-                        intent.putExtra("WHITE_NICK_SCORE", String.valueOf(playerWhite.getScore()));
+                        intent.putExtra("WHITE_NICK_SCORE", String.valueOf(GameResults.WHITE_SCORE));
                         intent.putExtra("BLACK_PLAYER_NAME", String.valueOf(playerBlack.getName()));
-                        intent.putExtra("BLACK_NICK_SCORE", String.valueOf(playerBlack.getScore()));
+                        intent.putExtra("BLACK_NICK_SCORE", String.valueOf(GameResults.BLACK_SCORE));
                         intent.putExtra("GAME_SCORE","FEHÉR FELADTA");
                         intent.putExtra("WHITE_PLAYER",String.valueOf(playerWhite));
                         intent.putExtra("BLACK_PLAYER",String.valueOf(playerBlack));
@@ -147,13 +148,12 @@ public class GameActivity extends AppCompatActivity {
 //                    .show();
 
 
-            Intent intent = new Intent(this, GameTiedActivity.class);
-            playerWhite.increaseScore(1);
-            playerBlack.increaseScore(0);
+            Intent intent = new Intent(this, GameResultActivity.class);
+            GameResults.WHITE_SCORE++;
             intent.putExtra("WHITE_PLAYER_NAME", String.valueOf(playerWhite.getName()));
-            intent.putExtra("WHITE_NICK_SCORE", String.valueOf(playerWhite.getScore()));
+            intent.putExtra("WHITE_NICK_SCORE", String.valueOf(GameResults.WHITE_SCORE));
             intent.putExtra("BLACK_PLAYER_NAME", String.valueOf(playerBlack.getName()));
-            intent.putExtra("BLACK_NICK_SCORE", String.valueOf(playerBlack.getScore()));
+            intent.putExtra("BLACK_NICK_SCORE", String.valueOf(GameResults.BLACK_SCORE));
             intent.putExtra("GAME_SCORE","FEKETE FELADTA");
             Log.d("GameActivity","- whiteResignButton onclick - fekete feladás");
             startActivity(intent);
@@ -177,13 +177,11 @@ public class GameActivity extends AppCompatActivity {
                 blackPlayerTextView.setText(drawOffered);
 
                 // intentben átadjuk a következő nézetnek a meccs adatait
-                Intent intent = new Intent(this, GameTiedActivity.class);
-                playerWhite.increaseScore(0);
-                playerBlack.increaseScore(0);
+                Intent intent = new Intent(this, GameResultActivity.class);
                 intent.putExtra("WHITE_PLAYER_NAME", String.valueOf(playerWhite.getName()));
-                intent.putExtra("WHITE_NICK_SCORE", String.valueOf(playerWhite.getScore()));
+                intent.putExtra("WHITE_NICK_SCORE", String.valueOf(GameResults.WHITE_SCORE));
                 intent.putExtra("BLACK_PLAYER_NAME", String.valueOf(playerBlack.getName()));
-                intent.putExtra("BLACK_NICK_SCORE", String.valueOf(playerBlack.getScore()));
+                intent.putExtra("BLACK_NICK_SCORE", String.valueOf(GameResults.BLACK_SCORE));
                 intent.putExtra("GAME_SCORE","DÖNTETLEN");
                 startActivity(intent);
             }
@@ -223,13 +221,11 @@ public class GameActivity extends AppCompatActivity {
                 blackPlayerTextView.setText(drawOffered);
 
                 // intentben átadjuk a következő nézetnek a meccs adatait
-                Intent intent = new Intent(this, GameTiedActivity.class);
-                playerWhite.increaseScore(0);
-                playerBlack.increaseScore(0);
+                Intent intent = new Intent(this, GameResultActivity.class);
                 intent.putExtra("WHITE_PLAYER_NAME", String.valueOf(playerWhite.getName()));
-                intent.putExtra("WHITE_NICK_SCORE", String.valueOf(playerWhite.getScore()));
+                intent.putExtra("WHITE_NICK_SCORE", String.valueOf(GameResults.WHITE_SCORE));
                 intent.putExtra("BLACK_PLAYER_NAME", String.valueOf(playerBlack.getName()));
-                intent.putExtra("BLACK_NICK_SCORE", String.valueOf(playerBlack.getScore()));
+                intent.putExtra("BLACK_NICK_SCORE", String.valueOf(GameResults.BLACK_SCORE));
                 intent.putExtra("GAME_SCORE","DÖNTETLEN");
                 startActivity(intent);
             }
@@ -265,7 +261,17 @@ public class GameActivity extends AppCompatActivity {
         playerBlack = new Player(blackPlayerName, ekke.azft2i.azft2i_chess_twoplayer_20.pieces.Color.BLACK);
     }
 
-
+    public void openGameResultActivity(int whiteScore, int blackScore, String result){
+        Intent intent = new Intent(this, GameResultActivity.class);
+        GameResults.WHITE_SCORE += whiteScore;
+        GameResults.BLACK_SCORE += blackScore;
+        intent.putExtra("WHITE_PLAYER_NAME", String.valueOf(playerWhite.getName()));
+        intent.putExtra("WHITE_NICK_SCORE", String.valueOf(GameResults.WHITE_SCORE));
+        intent.putExtra("BLACK_PLAYER_NAME", String.valueOf(playerBlack.getName()));
+        intent.putExtra("BLACK_NICK_SCORE", String.valueOf(GameResults.BLACK_SCORE));
+        intent.putExtra("GAME_SCORE",result);
+        startActivity(intent);
+    }
 
 
     /**
@@ -305,8 +311,8 @@ public class GameActivity extends AppCompatActivity {
     public void updatePlayerClock(long time) {
         long min = time / 60000;
         long sec = (time % 60000) / 1000;
-        @SuppressLint("DefaultLocale") String str = String.format("%02d:%02d", min, sec);
 
+        @SuppressLint("DefaultLocale") String str = String.format("%02d:%02d", min, sec);
         if (chessBoard.getTurn().isWhiteMove()){
             whiteClock.setText(str);
         } else

@@ -34,7 +34,7 @@ public class BishopTest {
     }
 
         @Test
-        public void test1() {
+        public void isValidMoveReturnsCorrectValues() {
             ChessPiece[][] board = new ChessPiece[8][8];
             Bishop bishop = new Bishop(3, 3, Color.WHITE);
 
