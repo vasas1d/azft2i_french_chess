@@ -162,10 +162,9 @@ public class ChessBoard {
      * @param endY   A bábu végcél sorának indexe (0-tól kezdve)
      */
     public void movePiece(int startX, int startY, int endX, int endY) {
-        // Ellenőrizzük, hogy a megadott pozíciók a tábla méretein belül vannak-e
+        // ellenőrizzük, hogy a megadott pozíciók a tábla méretein belül vannak-e
         if (startX < 0 || startX > 7 || startY < 0 || startY > 7 || endX < 0 || endX > 7 || endY < 0 || endY > 7) {
             Log.d("ChessBoard", "HIBA - Érvénytelen pozíciók - movePiece()");
-            // return false; // érvénytelen pozíciók
             return;
         }
 
@@ -177,12 +176,12 @@ public class ChessBoard {
             Log.d("ChessBoard", "- Nincs figura a kattintott mezőn - movePiece()");
             return;
         }
-        //ellenőrízzük ki lép
+        // ellenőrízzük ki lép
         if (turn.isWhiteMove() && startPiece.getColor().equals(Color.BLACK)
                 || !turn.isWhiteMove() && startPiece.getColor().equals(Color.WHITE)) {
             return;
         }
-        //ellenőrizzük, hogy nem-e saját bábut akar leütni
+        // ellenőrizzük, hogy nem-e saját bábut akar leütni
         if (endPosition != null && endPosition.getColor().equals(startPiece.getColor())) {
             return;
         }
@@ -240,11 +239,9 @@ public class ChessBoard {
             addNewPiece(endX, endY, startPiece);
 
             drawPieces(gameActivity.findViewById(R.id.chessBoard));
-            Log.d("ChessGame","- movePiece() -ütés figurára: "+startX+","+startY+"-> "+endX+","+endY);
             turn.isTurnEnd();
             refreshTurnField();
         }
-
         // döntetlen lett
         boolean scoreTied = moveValidator.isGameTied(board, turn.isWhiteMove());
         if (scoreTied) {
@@ -252,7 +249,6 @@ public class ChessBoard {
             refreshTurnFieldWithGameTied(); // logüzenet kiírása
             gameActivity.openGameResultActivity(0, 0, "DÖNTETLEN");
         }
-
         // győzelem
         Color winner = moveValidator.isWinner(board);
         if (winner != null) {
@@ -282,7 +278,6 @@ public class ChessBoard {
             }
         }
     }
-
     /**
      * Kirajzolja a bábukat a grafikus sakktáblára.
      * A metódus létrehoz egy GridLayout-ot a bábuk megjelenítéséhez a sakktáblán. Ha már létezik
