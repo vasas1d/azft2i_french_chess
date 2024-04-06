@@ -1,5 +1,6 @@
 package ekke.azft2i.azft2i_chess_twoplayer_20;
 import ekke.azft2i.azft2i_chess_twoplayer_20.board.MoveValidator;
+import ekke.azft2i.azft2i_chess_twoplayer_20.board.ChessPieceFactory;
 import ekke.azft2i.azft2i_chess_twoplayer_20.pieces.*;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -57,5 +58,21 @@ public class MoveValidatorTest {
 
         Color winner = validator.isWinner(board);
         assertEquals(Color.BLACK, winner);
+    }
+
+    @Test
+    public void testIsAttackMove() {
+        ChessPiece[][] board = new ChessPiece[8][8];
+        ChessPiece attackingPiece = ChessPieceFactory.initializeChessPiece("P", 2,2, Color.WHITE);
+        ChessPiece defendingPiece = ChessPieceFactory.initializeChessPiece("P", 3,3, Color.BLACK);
+
+        board[2][2] = attackingPiece;
+        board[3][3] = defendingPiece;
+
+        MoveValidator moveValidator = new MoveValidator();
+        assertTrue(moveValidator.isAttackMove(3, 3, board, attackingPiece));
+        assertFalse(moveValidator.isAttackMove(2, 2, board, attackingPiece));
+        assertFalse(moveValidator.isAttackMove(4, 4, board, attackingPiece));
+        assertFalse(moveValidator.isAttackMove(3, 3, board, defendingPiece));
     }
 }
