@@ -119,11 +119,8 @@ public class RookTest {
         ChessPiece[][] board = new ChessPiece[8][8];
         Rook rook = new Rook(3, 3, Color.WHITE);
 
-        // saját figura
         board[3][4] = new Pawn(3, 4, Color.WHITE);
         assertFalse(rook.isValidMove(3, 4, board));
-
-        // ellenfél figura
         board[3][4] = new Pawn(3, 4, Color.BLACK);
         assertTrue(rook.isValidMove(3, 4, board));
     }

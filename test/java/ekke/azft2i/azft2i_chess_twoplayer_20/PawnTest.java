@@ -62,7 +62,7 @@ public class PawnTest {
         board[4][3] = new Pawn(4, 3, Color.BLACK);
         assertFalse(pawn.isValidMove(4, 3, board));
     }
-        @Test
+    @Test
     public void testBlocked() {
         ChessPiece[][] board = new ChessPiece[8][8];
         Pawn pawn = new Pawn(4, 1, Color.WHITE);
@@ -74,5 +74,15 @@ public class PawnTest {
         assertFalse(pawn.isValidMove(4, 3, board));
     }
 
+    @Test
+    public void testPawnDiagonalCaptureBlack() {
+        ChessPiece[][] board = new ChessPiece[8][8];
+        Pawn pawn = new Pawn(4, 4, Color.BLACK);
 
+        board[3][3] = new Pawn(3, 3, Color.WHITE);
+        assertTrue(pawn.isValidMove(3, 3, board));
+
+        board[3][3] = null;
+        assertFalse(pawn.isValidMove(3, 3, board));
+    }
 }

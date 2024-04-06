@@ -139,4 +139,46 @@ public class BishopTest {
             assertTrue(bishop.isValidMove(1, 1, board));
             assertTrue(bishop.isValidMove(0, 0, board));
         }
+    @Test
+    public void testIsWhite() {
+        ChessPiece blackBishop = new Bishop(0, 0, Color.BLACK);
+        assertFalse(blackBishop.isWhite());
+        ChessPiece whiteBishop = new Bishop(0, 0, Color.WHITE);
+        assertTrue(whiteBishop.isWhite());
+    }
+
+    @Test
+    public void testIsValidMoveReturnWithFalse() {
+        ChessPiece[][] board = new ChessPiece[8][8];
+
+        ChessPiece blackBishop = new Bishop(3, 3, Color.BLACK);
+        board[3][3] = blackBishop;
+
+        assertTrue(blackBishop.isValidMove(1, 1, board));
+        assertTrue(blackBishop.isValidMove(1, 5, board));
+        assertTrue(blackBishop.isValidMove(5, 1, board));
+        assertTrue(blackBishop.isValidMove(5, 5, board));
+        assertTrue(blackBishop.isValidMove(4, 4, board));
+        assertFalse(blackBishop.isValidMove(3, 3, board));
+        assertFalse(blackBishop.isValidMove(3, 6, board));
+        assertFalse(blackBishop.isValidMove(6, 3, board));
+
+        ChessPiece whitePiece = new Bishop(5, 5, Color.WHITE);
+        board[5][5] = whitePiece;
+        assertTrue(blackBishop.isValidMove(1, 1, board));
+        assertTrue(blackBishop.isValidMove(5, 5, board));
+        assertTrue(blackBishop.isValidMove(2, 4, board));
+        assertFalse(blackBishop.isValidMove(7, 1, board));
+        assertFalse(blackBishop.isValidMove(1, 7, board));
+        assertFalse(blackBishop.isValidMove(6, 6, board));
+        assertFalse(blackBishop.isValidMove(7, 7, board));
+    }
+
+    @Test
+    public void testGetImageFileName() {
+        ChessPiece whiteBishop = new Bishop(3, 3, Color.WHITE);
+        ChessPiece blackBishop = new Bishop(4, 4, Color.BLACK);
+        assertEquals(R.drawable.piece_bishop_white, whiteBishop.getImageFileName());
+        assertEquals(R.drawable.piece_bishop_black_r180, blackBishop.getImageFileName());
+    }
     }

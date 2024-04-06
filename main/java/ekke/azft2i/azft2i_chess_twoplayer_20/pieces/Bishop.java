@@ -72,13 +72,7 @@ public class Bishop extends ChessPiece {
         if (color == Color.WHITE) {
             return R.drawable.piece_bishop_white;
         } else {
-            //return R.drawable.piece_bishop_black;
             return R.drawable.piece_bishop_black_r180;
         }
-    }
-
-    @Override
-    public boolean isWhite() {
-        return false;
     }
 }

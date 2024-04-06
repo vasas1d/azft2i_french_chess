@@ -1,15 +1,10 @@
 package ekke.azft2i.azft2i_chess_twoplayer_20.pieces;
-
 import android.graphics.Point;
-
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 /**
  * Az absztrakt osztály a sakkfigurákhoz.
  * Az összes sakkfigura saját osztálya ebből az abstrakt osztályból származik.
- * Az absztakt ChessPiece ősosztály származhatna interfészből ...
  */
 public abstract class ChessPiece {
 
@@ -29,9 +24,6 @@ public abstract class ChessPiece {
         this.yPosition = yPosition;
         this.color = color;
     }
-
-
-
     /**
      * A metódus visszaadja logikai érték formájában, hogy a figura léphet-e az adott célmezőre.
      *
