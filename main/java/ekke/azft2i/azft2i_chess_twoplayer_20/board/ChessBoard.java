@@ -285,7 +285,6 @@ public class ChessBoard {
      *                            egy üres FrameLayout, de nem tudja kezelni a null értéket.
      * @throws IllegalArgumentException Ha a {@code chessBoardContainer} null értékű.
      */
-    // túl sok mindent kezel, szétbontani
     @SuppressLint("ClickableViewAccessibility")
     public void drawPieces(FrameLayout chessBoardContainer) {
         // sakktábla törlése, ha már létezik
@@ -346,6 +345,7 @@ public class ChessBoard {
                                     attackFieldXYPosition = new Point(row, col);
                                     movePiece(selectedPiece.getXPosition(), selectedPiece.getYPosition(), attackFieldXYPosition.x, attackFieldXYPosition.y);
                                     isFirstClick = true;
+                                    clickedPieceView.setBackgroundColor(argb(0, 0, 0, 0));
                                 }
                             }
                         }
@@ -355,6 +355,7 @@ public class ChessBoard {
                             isFirstClick = true;
                             this.attackFieldXYPosition = new Point(row, col);
                             movePiece(selectedPiece.getXPosition(), selectedPiece.getYPosition(), attackFieldXYPosition.x, attackFieldXYPosition.y);
+                            clickedPieceView.setBackgroundColor(argb(0, 0, 0, 0));
                         }
                     }
                 });
@@ -362,15 +363,12 @@ public class ChessBoard {
                 if (piece != null) {
                     // beállítjuk a bábu képét a pozíciója alapján
                     pieceView.setImageResource(piece.getImageFileName());
-
                     // hozzáfűzés a GridLayout-hoz
                     chessBoard.addView(pieceView);
-
                 } else {
                     //  üres cella esetén, hozzáadunk egy üres ImageView-t
                     ImageView emptyView = new ImageView(gameActivity);
                     emptyView.setLayoutParams(new ViewGroup.LayoutParams(cellSize, cellSize));
-
                     // hozzáfűzés a GridLayout-hoz és onclick beállítása
                     chessBoard.addView(emptyView);
                     emptyView.setOnClickListener(v -> {
@@ -466,7 +464,6 @@ public class ChessBoard {
      */
     private String generateMoveString(int startX, int startY, int endX, int endY, ChessPiece[][] board) {
         ChessPiece piece = board[startX][startY];
-
         String move = (piece.getSymbol().equals("P")) ? "" : piece.getSymbol();
         String startLineSymbol = convertToChessField(startY);
         String endLineSymbol = convertToChessField(endY);
@@ -481,7 +478,6 @@ public class ChessBoard {
         move += endLineSymbol + (endX + 1);
         return move;
     }
-
     /**
      * Az convertToChessField metódus átalakítja a kapott pozíciót egy az értéket reprezentáló betűre.
      * Ez az új érték a mezőt reprezentáló első érték lesz a felhasználó felé való visszajelzésekkor.
@@ -494,11 +490,9 @@ public class ChessBoard {
         if (pos < 0 || pos > 7) {
             throw new IllegalArgumentException("A bemenő értéknek 0 és 7 között kell lennie.");
         }
-
         char chessLine = (char) ('a' + pos);
         return String.valueOf(chessLine);
     }
-
     /**
      * Az updatePlayersMovesText metódus frissíti a játékosok lépéseinek szöveges kijelzését a GameActivity nézeten.
      *

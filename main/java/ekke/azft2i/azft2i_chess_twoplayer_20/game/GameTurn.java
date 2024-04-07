@@ -17,10 +17,10 @@ public class GameTurn {
     long playerTime = 600000; // 10 perc
     /**
      * Konstruktor a GameTurn osztályhoz.
-     * Az osztály inicializálja az alapértelmezett értékeket:
-     * Beállítja az első kört és beállítja, hogy a fehér játékos
-     * kezdi a játszmát,továbbá inicializálja azu órákat.
-     * ezt az isWhiteMove változón keresztül végzi.
+     * Az osztály inicializálja az alapértelmezett értékeket.
+     * Beállítja az első kört. Beállítja, hogy a fehér játékos
+     * kezdi a játszmát, az isWhiteMove változón keresztül,
+     * továbbá inicializálja az órákat két ChessTimer objetumon keresztül.
      */
     public GameTurn(GameActivity gameActivity) {
         this.turnNumber = 1;
@@ -53,7 +53,6 @@ public class GameTurn {
      * @return A fekete játékos megmaradt ideje másodpercekben.(long)
      */
     public static long getBlackRemTime() {return blackRemainingTime;}
-
     /**
      * Paraméter nélküli metódus, visszadja éppen hányadik körnél tart a játszma.
      *
@@ -62,7 +61,6 @@ public class GameTurn {
     public int getTurnNumber() {
         return turnNumber;
     }
-
     /**
      * isWhiteMove paraméter nélküli metódus logikai értékként visszadja, hogy a játékos-e az éppen cselekvő játékos.
      *
@@ -101,7 +99,7 @@ public class GameTurn {
     /**
      * Paraméter nélküli metódus, ellenőrzi, hogy a forduló véget ért-e.
      * Amennyiben a körnek vége, úgy befejezi az aktuális kört és a következő játékosra vált,
-     * ezt az finishTurn() metódust hívással végzi. Ellenkező esetben, ha a körnek nincs vége, úgy
+     * ezt az finishTurn() metódus hívással végzi. Ellenkező esetben, ha a körnek nincs vége, úgy
      * a lépés jogát átadja a switchPlayer() metódushívással a másik játékosnak.
      */
     public void isTurnEnd(){
