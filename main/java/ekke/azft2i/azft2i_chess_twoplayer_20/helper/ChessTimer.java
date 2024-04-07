@@ -6,7 +6,6 @@ import android.util.Log;
 import ekke.azft2i.azft2i_chess_twoplayer_20.GameActivity;
 import ekke.azft2i.azft2i_chess_twoplayer_20.pieces.Color;
 
-//öndokumentáló!!
 public class ChessTimer {
 
     private final Color color;
@@ -23,7 +22,7 @@ public class ChessTimer {
         this.gameActivity = gameActivity;
         this.handler = new Handler();
         initializeClock(remainingTime);
-        this.runnable = this::onTimerTick; // labdával 5 sor helyett 1 sorban
+        this.runnable = this::onTimerTick;
         this.color = color;
     }
 
@@ -40,7 +39,6 @@ public class ChessTimer {
             isRunning = false;
             int whiteScore = color.equals(Color.WHITE) ? 0 : 1;
             int blackScore = color.equals(Color.WHITE) ? 1 : 0;
-            //gameActivity.openGameResultActivity(whiteScore,blackScore, "Győzelem - idő lejárt");
         }
     }
 

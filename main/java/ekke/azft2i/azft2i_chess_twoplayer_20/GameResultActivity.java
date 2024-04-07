@@ -14,14 +14,11 @@ import ekke.azft2i.azft2i_chess_twoplayer_20.game.Player;
 
 
 public class GameResultActivity extends AppCompatActivity {
-
-    Player playerWhite, playerBlack;
     String whitePlayerName, blackPlayerName;
     TextView wClockAfterMatch, bClockAfterMatch;
 
     public void onBackPressed() {
-        // az alapértelmezett backbutton működés tiltása.
-        Log.d("GameActivity","- onBackPressed  - back btn letiltva");
+        // az alapértelmezett backbutton működés tiltása az ürs metódussal
     }
 
     @Override

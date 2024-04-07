@@ -89,16 +89,12 @@ public class GameActivity extends AppCompatActivity {
 
         findViewById(R.id.whiteRestartGameButton).setOnClickListener((l) ->
         {
-
-            // akt aktivity újraindítása
             Intent intent = getIntent();
             finish();
             startActivity(intent);
-
         });
         findViewById(R.id.blackRestartGameButton).setOnClickListener((l) ->
         {
-            // akt aktivity újraindítása
             Intent intent = getIntent();
             finish();
             startActivity(intent);
@@ -106,11 +102,6 @@ public class GameActivity extends AppCompatActivity {
 
         Button whiteResignButton = findViewById(R.id.whiteResignButton);
         whiteResignButton.setOnClickListener(view -> {
-            new AlertDialog.Builder(this)
-                    .setTitle("Játszma feladása")
-                    .setMessage("Biztosan szeretnéd feladni a játékot?")
-                    .setPositiveButton("Igen", (dialog, which) -> {
-
                         Intent intent = new Intent(this, GameResultActivity.class);
                         GameResults.BLACK_SCORE++;
                         intent.putExtra("WHITE_PLAYER_NAME", String.valueOf(playerWhite.getName()));
@@ -118,36 +109,12 @@ public class GameActivity extends AppCompatActivity {
                         intent.putExtra("BLACK_PLAYER_NAME", String.valueOf(playerBlack.getName()));
                         intent.putExtra("BLACK_NICK_SCORE", String.valueOf(GameResults.BLACK_SCORE));
                         intent.putExtra("GAME_SCORE","FEHÉR FELADTA");
-                        intent.putExtra("WHITE_PLAYER",String.valueOf(playerWhite));
-                        intent.putExtra("BLACK_PLAYER",String.valueOf(playerBlack));
-                        Log.d("GameActivity","- whiteResignButton onclick - fehér feladás");
+                        Log.d("GameActivity","- whiteResignButton onclick - Fehér feladás");
                         startActivity(intent);
-
-                    })
-                    .setNegativeButton("Nem", (dialog, which) -> {
-                        // ha nem, akkor logolás + üzenet
-                        Snackbar.make(view, "A játék folytatódik!", Snackbar.LENGTH_SHORT).show();
-                        SnackbarHelper.showTopSnackBar( view, "A játék folytatódik!");
-                    })
-                    .show();
         });
 
         Button blackResignButton = findViewById(R.id.blackResignButton);
         blackResignButton.setOnClickListener(view -> {
-
-//            new AlertDialog.Builder(this)
-//                    .setTitle("Játszma feladása")
-//                    .setMessage("Biztosan szeretnéd feladni a játékot?")
-//                    .setPositiveButton("Igen", (dialog, which) -> {
-//                        Intent intent = new Intent(this, GameMainActivity.class);
-//                        startActivity(intent);
-//                    })
-//                    .setNegativeButton("Nem", (dialog, which) -> {
-//                        SnackbarHelper.showTopSnackBar( view, "A játék folytatódik!");
-//                    })
-//                    .show();
-
-
             Intent intent = new Intent(this, GameResultActivity.class);
             GameResults.WHITE_SCORE++;
             intent.putExtra("WHITE_PLAYER_NAME", String.valueOf(playerWhite.getName()));
@@ -155,13 +122,10 @@ public class GameActivity extends AppCompatActivity {
             intent.putExtra("BLACK_PLAYER_NAME", String.valueOf(playerBlack.getName()));
             intent.putExtra("BLACK_NICK_SCORE", String.valueOf(GameResults.BLACK_SCORE));
             intent.putExtra("GAME_SCORE","FEKETE FELADTA");
-            Log.d("GameActivity","- whiteResignButton onclick - fekete feladás");
+            Log.d("GameActivity","- whiteResignButton onclick - Fekete feladás");
             startActivity(intent);
         });
 
-
-
-        // átírni, túlontúl spagetti, feketét is
         whiteOfferDrawButton.setOnClickListener(view -> {
             String user = chessBoard.getTurn().isWhiteMove() ? getString(R.string.white_next_turn) : getString(R.string.black_next_turn);
 

@@ -13,6 +13,10 @@ public class Player {
     public String getName() {
         return playerNick;
     }
-
-
+    public void setPlayerName(String name) {
+        playerNick = name;
+    }
+   public Color getPlayerColor() {
+        return playerColor;
+   }
 }

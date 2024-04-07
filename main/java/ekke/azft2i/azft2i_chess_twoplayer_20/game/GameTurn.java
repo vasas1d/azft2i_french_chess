@@ -21,7 +21,23 @@ public class GameTurn {
 
     private static long whiteRemainingTime;
     private static long blackRemainingTime;
-    long playerTime = 60000; // 10 perc? //480000//720000; //
+    long playerTime = 600000; // 10 perc
+    /**
+     * Konstruktor a GameTurn osztályhoz.
+     * Az osztály inicializálja az alapértelmezett értékeket:
+     * Beállítja az első kört és
+     * beállítja, hogy a fehér játékos kezdi a játszmát,
+     * ezt az isWhiteMove változón keresztül végzi.
+     */
+
+    public GameTurn(GameActivity gameActivity) {
+        this.turnNumber = 1;
+        this.isWhiteMove = true;
+        this.whitePlayerClock = new ChessTimer(playerTime, gameActivity, Color.WHITE);
+        this.blackPlayerClock = new ChessTimer(playerTime, gameActivity, Color.BLACK);
+        setAllRemainingTime();
+        startWhiteClock(whitePlayerClock);
+    }
 
     /**
      * Az összes maradék idő beállítása a játékosoknak.
@@ -47,38 +63,12 @@ public class GameTurn {
      */
     public static long getBlackRemTime() {return blackRemainingTime;}
 
-
-
-    /**
-     * Konstruktor az osztály létrehozásához.
-     * Az osztály inicializálja az alapértelmezett értékeket:
-     * Beállítja az első kört és
-     * beállítja, hogy a fehér játékos kezdi a játszmát,
-     * ezt az isWhiteMove változón keresztül végzi.
-     */
-
-    public GameTurn(GameActivity gameActivity) {
-        this.turnNumber = 1;
-        this.isWhiteMove = true;
-        //Log.d("GameTurn","konstruktor lefutott ");
-        this.whitePlayerClock = new ChessTimer(playerTime, gameActivity, Color.WHITE);
-        this.blackPlayerClock = new ChessTimer(playerTime, gameActivity, Color.BLACK);
-        setAllRemainingTime();
-        startWhiteClock(whitePlayerClock);
-
-    }
-
-
-
-
-
     /**
      * Paraméter nélküli metódus, visszadja éppen hányadik körnél tart a játszma.
      *
      * @return Az aktuális kör száma. (int)
      */
     public int getTurnNumber() {
-       // Log.d("GameTurn","getTurnNumber() "+turnNumber);
         return turnNumber;
     }
 
@@ -116,11 +106,8 @@ public class GameTurn {
      * Amennyiben a fekete játékos következik, akkor a forduló számát is növeli.
      */
     private void finishTurn() {
-       // Log.d("GameTurn","endTurn() kör vége: "+turnNumber);
-         Log.d("GameTurn","finishTurn fehér: "+whitePlayerClock.getRemainingTime());
         turnNumber++;
         switchPlayer();
-        Log.d("GameTurn","finishTurn fekete: "+blackPlayerClock.getRemainingTime());
     }
     /**
      * Paraméter nélküli metódus, ellenőrzi, hogy a forduló véget ért-e.
