@@ -1,14 +1,12 @@
 package ekke.azft2i.azft2i_chess_twoplayer_20.helper;
-
 import android.os.Handler;
 import android.util.Log;
-
 import ekke.azft2i.azft2i_chess_twoplayer_20.GameActivity;
 import ekke.azft2i.azft2i_chess_twoplayer_20.pieces.Color;
 
 public class ChessTimer {
 
-    private final Color color;
+    final Color color;
     private final Handler handler;
     private final Runnable runnable;
     private long remainingTime;
@@ -37,8 +35,6 @@ public class ChessTimer {
         if (isRunning) {
             handler.removeCallbacks(runnable);
             isRunning = false;
-            int whiteScore = color.equals(Color.WHITE) ? 0 : 1;
-            int blackScore = color.equals(Color.WHITE) ? 1 : 0;
         }
     }
 
@@ -62,11 +58,9 @@ public class ChessTimer {
             Log.e("ChessTimer", "GameActivity null");
         }
     }
-
     private void initializeClock(long t) {
         gameActivity.initAllPlayerClock(t);
     }
-
     public long getRemainingTime() {
         return remainingTime;
     }

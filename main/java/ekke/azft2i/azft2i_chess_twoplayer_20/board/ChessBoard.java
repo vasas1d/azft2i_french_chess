@@ -1,9 +1,5 @@
 package ekke.azft2i.azft2i_chess_twoplayer_20.board;
-
-
 import static android.graphics.Color.argb;
-import static android.graphics.Color.rgb;
-
 import android.annotation.SuppressLint;
 import android.content.res.Resources;
 import android.graphics.Point;
@@ -23,24 +19,24 @@ import ekke.azft2i.azft2i_chess_twoplayer_20.GameActivity;
 public class ChessBoard {
 
     private ChessPiece[][] board;
-    private GameActivity gameActivity;
+    GameActivity gameActivity;
     private ChessPiece selectedPiece = null;
     private Point attackFieldXYPosition = null;
     private boolean isFirstClick = true;
     private ImageView clickedPieceView = null;
-    private static String allMoves = "";
-    private MoveValidator moveValidator = new MoveValidator();
+    private static String allMoves;
+    MoveValidator moveValidator = new MoveValidator();
     public GameTurn getTurn() {
         return turn;
     }
-    private GameTurn turn;
+    GameTurn turn;
     public ChessBoard(GameActivity gameActivity) {
         this.gameActivity = gameActivity;
         this.turn = new GameTurn(gameActivity);
         initializeBoard();
         refreshTurnField();
+        allMoves = "";
     }
-
     /**
      * Ez a paraméter nélküli metódus inicializálja a sakk táblán a figurákat.
      * Elhelyezi a fehér és fekete figurákat a kezdő pozíciókba a mátrixban.

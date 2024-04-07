@@ -1,13 +1,7 @@
 package ekke.azft2i.azft2i_chess_twoplayer_20.game;
-
-
-
-import android.util.Log;
-
 import ekke.azft2i.azft2i_chess_twoplayer_20.GameActivity;
 import ekke.azft2i.azft2i_chess_twoplayer_20.helper.ChessTimer;
 import ekke.azft2i.azft2i_chess_twoplayer_20.pieces.Color;
-
 
 /**
  * A GameTurn osztály a játékban történő játékosváltások és körváltások kezelését végzi.
@@ -18,18 +12,16 @@ public class GameTurn {
     private boolean isWhiteMove;
     private final ChessTimer whitePlayerClock;
     private final ChessTimer blackPlayerClock;
-
     private static long whiteRemainingTime;
     private static long blackRemainingTime;
     long playerTime = 600000; // 10 perc
     /**
      * Konstruktor a GameTurn osztályhoz.
      * Az osztály inicializálja az alapértelmezett értékeket:
-     * Beállítja az első kört és
-     * beállítja, hogy a fehér játékos kezdi a játszmát,
+     * Beállítja az első kört és beállítja, hogy a fehér játékos
+     * kezdi a játszmát,továbbá inicializálja azu órákat.
      * ezt az isWhiteMove változón keresztül végzi.
      */
-
     public GameTurn(GameActivity gameActivity) {
         this.turnNumber = 1;
         this.isWhiteMove = true;
@@ -38,7 +30,6 @@ public class GameTurn {
         setAllRemainingTime();
         startWhiteClock(whitePlayerClock);
     }
-
     /**
      * Az összes maradék idő beállítása a játékosoknak.
      * Kiszámolja és beállítja a játékosok maradék idejét
@@ -46,7 +37,7 @@ public class GameTurn {
      */
     private void setAllRemainingTime(){
         whiteRemainingTime = playerTime - whitePlayerClock.getRemainingTime();
-        blackRemainingTime  = playerTime - blackPlayerClock.getRemainingTime();
+        blackRemainingTime = playerTime - blackPlayerClock.getRemainingTime();
     }
     /**
      * A getWhiteRemTime statikus metódus visszaadja a fehér játékos megmaradt idejét másodpercekben.
@@ -93,9 +84,7 @@ public class GameTurn {
             whitePlayerClock.stopTimer();
             blackPlayerClock.startTimer();
         }
-
         setAllRemainingTime();
-
     }
     public void startWhiteClock(ChessTimer playerClock) {
         playerClock.startTimer();
@@ -103,7 +92,7 @@ public class GameTurn {
 
     /**
      * Befejezi az aktuális kört és átadja a másik játékosnak a lépés jogát a switchPlayer() metódushívással.
-     * Amennyiben a fekete játékos következik, akkor a forduló számát is növeli.
+     * Amennyiben a fekete játékos volt aktuálisan körön, akkor a forduló számát is növeli.
      */
     private void finishTurn() {
         turnNumber++;

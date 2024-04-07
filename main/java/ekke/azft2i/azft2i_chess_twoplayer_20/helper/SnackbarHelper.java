@@ -1,7 +1,6 @@
 package ekke.azft2i.azft2i_chess_twoplayer_20.helper;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.TextView;
