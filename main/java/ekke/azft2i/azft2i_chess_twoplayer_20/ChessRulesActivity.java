@@ -19,15 +19,9 @@ public class ChessRulesActivity extends AppCompatActivity {
         setContentView(R.layout.activity_chess_rules);
 
         WebView webView = findViewById(R.id.chessRulesWebView);
-        webView.setBackgroundColor(Color.TRANSPARENT); // a scollview háttere ne fehér legye, hanem áttetsző, így szépen látszik már.
-
-
-        webView.loadUrl("file:///android_res/raw/chess_rules.html"); // Így töltjük be a HTML fájlt
-
-
-
-        // Opcionális: Ha a linkre kattintva is az alkalmazásban maradjon
-        webView.setWebViewClient(new WebViewClient());
+        webView.setBackgroundColor(Color.TRANSPARENT); // a scollview háttere áttetsző
+        webView.loadUrl("file:///android_res/raw/chess_rules.html"); // itt töltjük be a HTML fájlt
+        webView.setWebViewClient(new WebViewClient()); // a linkre kattintva is az alkalmazásban marad
 
         Button backButton = findViewById(R.id.chess_rules_back_Button);
         backButton.setOnClickListener(v -> {

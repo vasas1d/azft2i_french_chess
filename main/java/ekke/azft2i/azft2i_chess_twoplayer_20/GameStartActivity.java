@@ -26,7 +26,6 @@ public class GameStartActivity extends AppCompatActivity {
         backButtonGameStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               // finish(); // Az Activity bezárása és visszatérés az előző Activity-hez
                 Intent intent = new Intent(GameStartActivity.this, GameMainActivity.class);
                 startActivity(intent);
             }
@@ -39,8 +38,6 @@ public class GameStartActivity extends AppCompatActivity {
                 startGame();
             }
         });
-
-
     }
 
     private void startGame() {
@@ -53,7 +50,7 @@ public class GameStartActivity extends AppCompatActivity {
         } else if (whitePlayerName.length() > 8 || blackPlayerName.length() > 8) {
             Toast.makeText(this, "A játékos neve maximum 8 karakter lehet! ", Toast.LENGTH_SHORT).show();
         } else {
-            // Átnavigálás a GameActivity-re és átadjuk a játékos neveknek
+            // átnavigálás a GameActivity-re, illetve átadjuk a játékos neveket
             Intent intent = new Intent(GameStartActivity.this, GameActivity.class);
             intent.putExtra("WHITE_PLAYER_NAME", whitePlayerName);
             intent.putExtra("BLACK_PLAYER_NAME", blackPlayerName);

@@ -9,9 +9,9 @@ import com.google.android.material.snackbar.Snackbar;
 
 public class SnackbarHelper {
     /**
-     * Megjeleníti a paraméterben kapott szöveget egy Snackbar elemben a
-     * nézet tetején 180 fokban elforgatva. a fekete játékosnak szánt felugró
-     * értesítésének kijelzésére szlgál
+     * Megjeleníti a paraméterben kapott szöveget egy Snackbar elemben a játék
+     * nézet tetején 180 fokban elforgatva. A fekete játékosnak szánt felugró
+     * értesítésének kijelzésére szlgál.
      *
      * @param view A nézet, amelyhez a Snackbar kapcsolódik.
      * @param message A Snackbar-on megjelenő üzenet.
@@ -30,5 +30,4 @@ public class SnackbarHelper {
 
         snackbar.show();
     }
-
 }

@@ -1,5 +1,4 @@
 package ekke.azft2i.azft2i_chess_twoplayer_20;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,14 +10,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import ekke.azft2i.azft2i_chess_twoplayer_20.board.ChessBoard;
 import ekke.azft2i.azft2i_chess_twoplayer_20.game.GameTurn;
 import ekke.azft2i.azft2i_chess_twoplayer_20.game.Player;
-
-
 public class GameResultActivity extends AppCompatActivity {
     String whitePlayerName, blackPlayerName;
     TextView wClockAfterMatch, bClockAfterMatch;
 
     public void onBackPressed() {
-        // az alapértelmezett backbutton működés tiltása az ürs metódussal
+        // az alapértelmezett backbutton működés tiltása az üres metódussal
     }
 
     @Override
@@ -34,7 +31,7 @@ public class GameResultActivity extends AppCompatActivity {
         Button newGameButton = findViewById(R.id.newGameButton);
 
         TextView chessMovedTextView = findViewById(R.id.chessOpeningsTextView);
-        chessMovedTextView.setText(ChessBoard.getAllMoves()); // lépések printelése static metódussal a textviewra
+        chessMovedTextView.setText(ChessBoard.getAllMoves()); // lépések kiírása static metódussal a textviewra
 
         // órák inicializálása
         wClockAfterMatch = findViewById(R.id.playerClockWhite);
@@ -100,5 +97,4 @@ public class GameResultActivity extends AppCompatActivity {
         String strBlack = String.format("%02d:%02d", minutesBlack, secondsBlack);
         bClockAfterMatch.setText(strBlack);
     }
-
 }

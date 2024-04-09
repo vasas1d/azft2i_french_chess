@@ -110,8 +110,6 @@ public class ChessBoard {
 
             if (PawnPromotion(piece, x) == null) {
                 board[x][y] = piece;
-                //Log.d("ChessBoard", "addNewPiece() - Új "+board[x][y].getPieceName() +" a pályán "+x +","+y+" pozíción.");
-
             } else {
                 board[x][y] = new King(x, y, piece.getColor());
             }
@@ -126,7 +124,7 @@ public class ChessBoard {
      */
     public void removePieceAt(int x, int y) {
         if (board[x][y] != null) {
-            board[x][y] = null; // ezzel töröljük, majd lefrissíti a drawpiece()
+            board[x][y] = null;
         } else Log.d("ChessBoard", "Hiba - removePieceAt()");
     }
     /**
@@ -158,7 +156,7 @@ public class ChessBoard {
      * @param endY   A bábu végcél sorának indexe (0-tól kezdve)
      */
     public void movePiece(int startX, int startY, int endX, int endY) {
-        // ellenőrizzük, hogy a megadott pozíciók a tábla méretein belül vannak-e
+        // ellenőrizzük, hogy a megadott pozíciók a tábla belül vannak-e
         if (startX < 0 || startX > 7 || startY < 0 || startY > 7 || endX < 0 || endX > 7 || endY < 0 || endY > 7) {
             Log.d("ChessBoard", "HIBA - Érvénytelen pozíciók - movePiece()");
             return;
@@ -182,7 +180,7 @@ public class ChessBoard {
             return;
         }
 
-        // ellenőrizzük, hogy a bábu szabályosan mozog-e // moveValidator
+        // ellenőrizzük, hogy a bábu szabályosan mozog-e // moveValidator-ral
         if (!startPiece.isValidMove(endX, endY, board)) {
             Log.d("ChessBoard", "HIBA - Érvénytelen mozgás a validálás közben, a mozgás nem megtehető.- movePiece()");
             return;
@@ -191,7 +189,7 @@ public class ChessBoard {
                 return;
             }
         }
-        /// lépés logolása textviewre a játék képernyőn
+        /// lépés logolása
         String str;
         if (turn.isWhiteMove()) {
             str = turn.getTurnNumber() + ". " + generateMoveString(startX, startY, endX, endY, board);
@@ -384,9 +382,10 @@ public class ChessBoard {
         chessBoardContainer.addView(chessBoard);
     }
     /**
-     * A PawnPromotion metódus ellenőrzi, hogy a megadott gyalog elérte-e az alapvonalat
-     * a játék során, és így szükség van-e átalakulásra. Ha a gyalog elérte az alapvonalat,
-     * akkor visszatér a gyalog színével, ami alapjána játék folyamán a gyalog átalakulása történik.
+     * A PawnPromotion metódus ellenőrzi, hogy a megadott figura (gyalog) elérte-e
+     * az alapvonalat a játék során, szükség van-e átalakulásra. Ha a gyalog elérte
+     * az alapvonalat, akkor visszatér a gyalog színével, különben null értékkel
+     * jelzi, hogy nem gyalog vagy nem érte el az alapvonalat a figura.
      *
      * @param piece Az a sakkfigura, amelyről eldöntjük, hogy átalakul-e
      * @param endX Az X koordináta, ahova a figura lépett

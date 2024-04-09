@@ -25,10 +25,6 @@ public class Pawn extends ChessPiece {
         int diffX = newX - this.xPosition;
         int diffY = newX - this.xPosition;
 
-
-
-
-
         if (color == Color.WHITE) {
             //ha egyértelműen szabálytalan lépés
             if((xPosition != 1 && diffX > 1)            //nem kezdőpoziban van és többet lépne mint 1
@@ -116,7 +112,6 @@ public class Pawn extends ChessPiece {
         if (color == Color.WHITE) {
             return R.drawable.piece_pawn_white;
         } else {
-//            return R.drawable.piece_pawn_black;
             return R.drawable.piece_pawn_black_r180;
         }
     }

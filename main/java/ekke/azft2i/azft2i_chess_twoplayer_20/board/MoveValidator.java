@@ -70,7 +70,6 @@ public class MoveValidator {
                 }
             }
         }
-
         Log.d("MoveValidator", "Az aktív játékos nem tud mozogni");
         return true;
     }

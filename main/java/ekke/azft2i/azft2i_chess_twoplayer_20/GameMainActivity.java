@@ -1,4 +1,3 @@
-// switch kellene, de nagyon nehéz átadni neki a nézetet, marad egyelőre a spagetti
 
 package ekke.azft2i.azft2i_chess_twoplayer_20;
 
@@ -21,8 +20,7 @@ public class GameMainActivity extends AppCompatActivity {
         Button aboutDevButton = findViewById(R.id.aboutDevButton);
 
         exitButton.setOnClickListener(view -> {
-
-            finishAffinity();//finish();//finishAffinity();//finish();//
+            finishAffinity();
         });
 
         startGameButton.setOnClickListener(view -> {

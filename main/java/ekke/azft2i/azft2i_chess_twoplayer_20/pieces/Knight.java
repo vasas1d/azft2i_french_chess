@@ -17,7 +17,6 @@ public class Knight extends ChessPiece {
      */
     @Override
     public boolean isValidMove(int newX, int newY, ChessPiece[][] board) {
-        // A huszár "L" alakban tud lépni
         int deltaX = Math.abs(newX - xPosition);
         int deltaY = Math.abs(newY - yPosition);
 
@@ -52,9 +51,7 @@ public class Knight extends ChessPiece {
         if (color == Color.WHITE) {
             return R.drawable.piece_knight_white;
         } else {
-            //return R.drawable.piece_knight_black;
             return R.drawable.piece_knight_black_r180;
         }
     }
-
 }

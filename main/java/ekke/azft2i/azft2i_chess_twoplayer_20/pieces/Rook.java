@@ -20,7 +20,7 @@ public class Rook extends ChessPiece {
         if (newX == xPosition && newY == yPosition) {
             return false;
         }
-        // csak egy iranyba lephet
+        // csak egy irányba léphet
         if(newX != xPosition && newY != yPosition){
             return false;
         }
@@ -34,7 +34,7 @@ public class Rook extends ChessPiece {
                     return false;
                 }
             }
-        }else if(newY != yPosition){ //ha függöleges, ugyanez
+        }else if(newY != yPosition){ //ha függöleges
             int direction = (newY-yPosition > 0) ? 1 : -1;
             for(int y = yPosition+direction; y!=newY; y = y + direction) {
                 if(board[xPosition][y] != null){
@@ -42,7 +42,7 @@ public class Rook extends ChessPiece {
                 }
             }
         }
-        // checkoljuk, ha üt akkor ellenséges bábut üt-e
+        // ellenőrizzük, ha üt akkor ellenséges bábut üt-e
         if(board[newX][newY] != null && board[newX][newY].getColor() == color){
             return false;
         }
@@ -73,7 +73,6 @@ public class Rook extends ChessPiece {
         if (color == Color.WHITE) {
             return R.drawable.piece_rook_white;
         } else {
-//            return R.drawable.piece_rook_black;
             return R.drawable.piece_rook_black_r180;
         }
     }

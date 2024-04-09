@@ -18,7 +18,7 @@ public class Bishop extends ChessPiece {
      */
     @Override
     public boolean isValidMove(int newX, int newY, ChessPiece[][] board) {
-        // ha a célmező ugyanaz, mint az aktuális pozíció, akkor nem léphet.
+        // ha a célmező ugyanaz, mint az aktuális pozíció, akkor nem léphet a figura
         if (newX == xPosition && newY == yPosition) {
             return false;
         }

@@ -37,8 +37,8 @@ public class Queen extends ChessPiece {
         } else if (newY - yPosition < 0) {
             directionY = -1;
         }
-        if(deltaX != 0){//ha x tengelyen mozgok
-            if(deltaY != 0 && deltaY != deltaX ) {///akkor y tengelyen vagy 0-t vagy deltaX-myit omzoghatok
+        if(deltaX != 0){//ha x tengelyen mozog
+            if(deltaY != 0 && deltaY != deltaX ) {
                 return false;
             }
         }
@@ -62,7 +62,6 @@ public class Queen extends ChessPiece {
 
         return true;
     }
-
     @Override
     public String getSymbol() {
         return "Q";
@@ -87,7 +86,6 @@ public class Queen extends ChessPiece {
         if (color == Color.WHITE) {
             return R.drawable.piece_queen_white;
         } else {
-//            return R.drawable.piece_queen_black;
             return R.drawable.piece_queen_black_r180;
         }
     }

@@ -17,7 +17,6 @@ public class King extends ChessPiece {
      */
     @Override
     public boolean isValidMove(int newX, int newY, ChessPiece[][] board) {
-        // A király az egyetlen mezőt tud lépni vízszintesen, függőlegesen vagy átlósan
         int deltaX = Math.abs(newX - xPosition);
         int deltaY = Math.abs(newY - yPosition);
 
@@ -52,7 +51,6 @@ public class King extends ChessPiece {
         if (color == Color.WHITE) {
             return R.drawable.piece_king_white;
         } else {
-            //return R.drawable.piece_king_black;
             return R.drawable.piece_king_black_r180;
         }
     }

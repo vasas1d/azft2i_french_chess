@@ -6,7 +6,7 @@ import ekke.azft2i.azft2i_chess_twoplayer_20.pieces.*;
 
 public class ChessPieceFactory {
     /**
-     * Létrehoz egy sakkfigurát a megadott szimbólum és pozíció alapján.
+     * Létrehoz egy sakkfigurát a paraméterben kapott értékek alapján.
      *
      * @param symbol     A figura szimbóluma, pl.: "R", "N", "B", "Q", "K", "P"
      * @param xPosition  Az X koordináta, a figura kezdőpozíciója
@@ -31,7 +31,7 @@ public class ChessPieceFactory {
                 return new Pawn(xPosition, yPosition, color);
             default:
                 Log.d("PieceFactory", "HIBA - initializeChessPiece()");
-                throw new IllegalArgumentException("HIBA hibás - figura szimbólum: " + symbol);
+                throw new IllegalArgumentException("Hibás figura szimbólum: " + symbol);
         }
     }
 }

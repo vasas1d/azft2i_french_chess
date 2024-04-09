@@ -20,7 +20,7 @@ public class GameTurn {
      * Az osztály inicializálja az alapértelmezett értékeket.
      * Beállítja az első kört. Beállítja, hogy a fehér játékos
      * kezdi a játszmát, az isWhiteMove változón keresztül,
-     * továbbá inicializálja az órákat két ChessTimer objetumon keresztül.
+     * továbbá inicializálja az órákat két ChessTimer objektumon keresztül.
      */
     public GameTurn(GameActivity gameActivity) {
         this.turnNumber = 1;

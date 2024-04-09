@@ -37,7 +37,6 @@ public class GameActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         // az alapértelmezett backbutton működés tiltása
-        Log.d("GameActivity","- onBackPressed  - Vissza gomb használat letiltva!");
     }
 
     @Override
@@ -199,7 +198,7 @@ public class GameActivity extends AppCompatActivity {
         // figurák kirajzolása a sakktáblára
         FrameLayout chessBoardContainer = findViewById(R.id.chessBoard);
         chessBoard.drawPieces(chessBoardContainer);
-        initializeCapturedPiecesLayouts(); // leütött figurák helyének megjelenítése
+        initializeCapturedPiecesLayouts(); // leütött figurák helyének inicializálása
 
         // játékosok felparaméterezése intentből a névvel és a színnel
         playerWhite = new Player(whitePlayerName, ekke.azft2i.azft2i_chess_twoplayer_20.pieces.Color.WHITE);
