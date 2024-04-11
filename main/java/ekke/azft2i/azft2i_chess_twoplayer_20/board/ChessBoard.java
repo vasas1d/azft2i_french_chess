@@ -347,7 +347,6 @@ public class ChessBoard {
                                 }
                             }
                         }
-
                     } else {
                         if (!isFirstClick) {
                             isFirstClick = true;
@@ -374,6 +373,7 @@ public class ChessBoard {
                             isFirstClick = true;
                             this.attackFieldXYPosition = new Point(row, col);
                             movePiece(selectedPiece.getXPosition(), selectedPiece.getYPosition(), attackFieldXYPosition.x, attackFieldXYPosition.y);
+                            clickedPieceView.setBackgroundColor(argb(0, 0, 0, 0));
                         }
                     });
                 }
